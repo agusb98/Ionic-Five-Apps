@@ -1,0 +1,32 @@
+ion-content {
+  --background: black;
+}
+
+@-webkit-keyframes rotate-hor-center {
+  0% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(-360deg);
+    transform: rotateX(-360deg);
+  }
+}
+@keyframes rotate-hor-center {
+  0% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(-360deg);
+    transform: rotateX(-360deg);
+  }
+}
+
+.container {
+  -webkit-animation:rotate-hor-center .5s cubic-bezier(.455,.03,.515,.955) both;animation:rotate-hor-center .5s cubic-bezier(.455,.03,.515,.955) both;
+  img {
+    height: 100px;
+    margin-top: 30%;
+  }
+}
