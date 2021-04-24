@@ -1,0 +1,27 @@
+.center-span {
+  display: block;
+  text-align: center;
+}
+
+.icon {
+  max-width: 32vh;
+  display: block;
+  margin: 0 auto;
+}
+
+ion-input,
+ion-item {
+  --background: transparent;
+}
+
+ion-content {
+  --background: url(../../../../assets/img/splash.png) no-repeat center/cover fixed;
+}
+
+ion-toolbar {
+  --background: rgb(6, 71, 20);
+}
+
+.text-danger {
+  color: #e23e57;
+}
