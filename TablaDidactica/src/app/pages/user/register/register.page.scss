@@ -1,0 +1,29 @@
+.center-span {
+  display: block;
+  text-align: center;
+}
+
+.icon {
+  max-width: 32vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.text-danger {
+  color: #e23e57;
+}
+
+ion-item {
+  --background: transparent;
+}
+
+.a-login{
+  color: green;
+}
+
+.title{
+  color: green;
+  font-size: 200%;
+  text-align:center;
+  font-family: verdana;
+}

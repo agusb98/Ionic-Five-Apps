@@ -23,7 +23,10 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true
+    })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

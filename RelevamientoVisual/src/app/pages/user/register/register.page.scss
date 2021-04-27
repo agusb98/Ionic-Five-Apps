@@ -9,15 +9,21 @@
   margin: 0 auto;
 }
 
-ion-input,
+.text-danger {
+  color: #e23e57;
+}
+
 ion-item {
   --background: transparent;
 }
 
-ion-content {
-  --background: url(../../../../assets/img/splash.png) no-repeat center/cover fixed;
+.a-login{
+  color: #f8f8f8;
 }
 
-ion-toolbar {
-  --background: rgb(6, 71, 20);
+.title{
+  color: black;
+  font-size: 200%;
+  text-align:center;
+  font-family: verdana;
 }

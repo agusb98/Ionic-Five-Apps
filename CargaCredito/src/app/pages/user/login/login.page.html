@@ -8,14 +8,14 @@
   <form>
     <ion-item lines="full">
       <img class="icon" src="../../../../assets/img/login-splash.svg" alt="" />
-      <ion-label position="stacked">
-        Email <span class="text-danger">*</span></ion-label
+      <ion-label position="floating">
+        Ingrese Email <span class="text-danger">*</span></ion-label
       >
       <ion-input type="text" #email required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="stacked">
-        Contraseña <span class="text-danger">*</span></ion-label
+      <ion-label position="floating">
+        Ingrese Contraseña <span class="text-danger">*</span></ion-label
       >
       <ion-input type="password" #password required></ion-input>
     </ion-item>
@@ -25,33 +25,16 @@
           type="submit"
           (click)="onLogin(email, password)"
           expand="block"
+          color= "warning"
           >Ingresar</ion-button
         >
       </ion-col>
     </ion-row>
-    <!-- <ion-row>
-      <ion-col>
-        <p class="ion-text-end">
-          <a href="/user/forgot-password">Olvidó Contraseña? </a>
-        </p>
-      </ion-col>
-    </ion-row>
-    <span class="center-span"> or </span>
-    <ion-row>
-      <ion-col class="center-span">
-        <ion-button type="submit" color="danger" (click)="onLoginGoogle()"
-          >Ingresar con Google
-        </ion-button>
-        <ion-button type="submit" color="secondary" (click)="onLoginFacebook()"
-          >Ingresar con Facebook
-        </ion-button>
-      </ion-col>
-    </ion-row> -->
   </form>
   <ion-row>
     <ion-col>
       <p class="ion-text-end">
-        <a href="/user/register">Crear una Cuenta </a>
+        <a href="/user/register" class="a-register">Crear una Cuenta </a>
       </p>
     </ion-col>
   </ion-row>
