@@ -1,5 +1,5 @@
 {
-  "name": "RelevamientoVisual",
+  "name": "TablaDidactica",
   "integrations": {
     "capacitor": {
       "enabled": false
