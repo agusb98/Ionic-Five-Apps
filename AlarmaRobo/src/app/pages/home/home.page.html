@@ -5,8 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-tabs>
-    <!-- Tab bar -->
+  <!-- <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button>
         <ion-icon name="log-in" routerLink="/user/login"> </ion-icon> Ingresar
@@ -16,5 +15,9 @@
         Sesion
       </ion-tab-button>
     </ion-tab-bar>
-  </ion-tabs>
+  </ion-tabs> -->
+
+  <ion-button class="btnLogin" expand="block" shape="round" (click)="login()"
+    >Iniciar Sesion</ion-button
+  >
 </ion-content>
