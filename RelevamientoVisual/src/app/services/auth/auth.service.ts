@@ -11,7 +11,7 @@ import { User } from 'src/app/shared/interface/user';
 })
 export class AuthService {
 
-  public user: User;
+  public user: any;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -21,10 +21,10 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
-      const user = await this.afAuth.signInWithEmailAndPassword(email, password);
+      this.user = await this.afAuth.signInWithEmailAndPassword(email, password);
       //this.vibration.vibrate([1000, 500, 1000]);
       this.toastrService.success('Ingreso con Exito', 'Iniciar Sesión');
-      return user;
+      return this.user;
     }
     catch (error) {
       //this.vibration.vibrate([1000]);
@@ -35,10 +35,10 @@ export class AuthService {
 
   async register(email: string, password: string) {
     try {
-      const user = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      this.user = await this.afAuth.createUserWithEmailAndPassword(email, password);
       //this.vibration.vibrate([1000, 500, 1000]);
       this.toastrService.success('Bienvenido!', 'Registro de Usuario');
-      return user;
+      return this.user;
     }
     catch (error) {
       //this.vibration.vibrate([1000]);
@@ -51,7 +51,8 @@ export class AuthService {
     try {
       await this.afAuth.signOut();
       //this.vibration.vibrate([1000, 500, 1000]);
-      this.toastrService.success('Sesion Cerrada con Exito', 'Salir');
+      this.toastrService.success('Sesión Cerrada con Exito', 'Salir');
+      this.user = null;
     }
     catch (error) { 
       //this.vibration.vibrate([1000]);

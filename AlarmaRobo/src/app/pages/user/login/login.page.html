@@ -1,41 +1,42 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <form>
     <ion-item lines="full">
-      <img class="icon" src="../../../../assets/img/login-splash.svg" alt="" />
-      <ion-label position="floating">
-        Email <span class="text-danger">*</span></ion-label
+      <img class="icon" src="../../../../assets/img/login-splash.png" alt="" />
+      <ion-label position="floating" style="color: #fde400; text-align: right;">
+        Correo <span class="text-danger">*</span></ion-label
       >
       <ion-input type="text" #email required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">
+      <ion-label position="floating" style="color: #fde400; text-align: left;">
         Contraseña <span class="text-danger">*</span></ion-label
       >
       <ion-input type="password" #password required></ion-input>
     </ion-item>
+
     <ion-row>
       <ion-col>
         <ion-button
+          class="btnLogin"
           type="submit"
           (click)="onLogin(email, password)"
-          expand="block"
-          color="warning"
+          color="none"
           >Ingresar</ion-button
+        >
+
+        <ion-button
+          type="submit"
+          (click)="onRegister(email, password)"
+          color="none"
+          >Registro</ion-button
         >
       </ion-col>
     </ion-row>
   </form>
-  <ion-row>
-    <ion-col>
-      <p class="ion-text-end">
-        <a href="/user/register" class="a-register">Crear una Cuenta </a>
-      </p>
-    </ion-col>
-  </ion-row>
 </ion-content>

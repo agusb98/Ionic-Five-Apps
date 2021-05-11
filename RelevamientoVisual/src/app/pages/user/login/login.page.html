@@ -1,20 +1,20 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <form>
     <ion-item lines="full">
-      <img class="icon" src="../../../../assets/img/login-splash.svg" alt="" />
-      <ion-label position="floating">
+      <img class="icon" src="../../../../assets/img/login-splash.png" alt="" />
+      <ion-label position="floating" style="color: rgb(211, 46, 147); text-align: center;">
         Email <span class="text-danger">*</span></ion-label
       >
       <ion-input type="text" #email required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">
+      <ion-label position="floating" style="color: rgb(211, 46, 147); text-align: center;">
         Contraseña <span class="text-danger">*</span></ion-label
       >
       <ion-input type="password" #password required></ion-input>
@@ -22,19 +22,19 @@
     <ion-row>
       <ion-col>
         <ion-button
+          color="none"
           type="submit"
           (click)="onLogin(email, password)"
-          expand="block"
-          color="dark"
           >Ingresar</ion-button
         >
       </ion-col>
     </ion-row>
   </form>
+  <br /><br />
   <ion-row>
     <ion-col>
       <p class="ion-text-end">
-        <a href="/user/register" class="a-register">Crear una Cuenta </a>
+        <a href="/user/register">Crear una Cuenta </a>
       </p>
     </ion-col>
   </ion-row>

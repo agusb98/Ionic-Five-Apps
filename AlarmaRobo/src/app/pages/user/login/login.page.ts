@@ -25,6 +25,14 @@ export class LoginPage {
     catch (error) { }
   }
 
+  async onRegister(email, password) {    
+    try {
+      const user = await this.authService.register(email.value, password.value);
+      if (user) { this.router.navigate(['/home']); }
+    }
+    catch (error) { }
+  }
+
   /* async onLoginGoogle() {
     try {
       const user = await this.authService.loginGoogle();

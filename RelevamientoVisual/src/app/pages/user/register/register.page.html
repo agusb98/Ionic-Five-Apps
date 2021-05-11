@@ -1,13 +1,13 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Crear Cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <form>
     <ion-item lines="full">
-      <h1 class="title">UNETE A NUESTRO EQUIPO</h1>
+      <h1>UNETE A NUESTRO EQUIPO</h1>
       <img class="img-register" src="/assets/img/register.png" alt="" />
       <ion-label position="floating">
         Email <span class="text-danger">*</span></ion-label
@@ -23,15 +23,15 @@
     <ion-row>
       <ion-col>
         <ion-button
+          color="none"
           type="submit"
           (click)="onRegister(email, password)"
-          expand="block"
-          color="dark"
           >Registro</ion-button
         >
       </ion-col>
     </ion-row>
   </form>
+  <br /><br />
   <ion-row>
     <ion-col>
       <p class="ion-text-end">

@@ -25,12 +25,71 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+$primary-color: rgb(211, 46, 147);
+$secondary-color: rgb(14, 4, 107);
+
 ion-toolbar {
-    --background: rgb(247, 196, 230);
+    --background: $primary-color;
 }
 
 ion-content {
     --background: #B24592;  /* fallback for old browsers */
     --background: -webkit-linear-gradient(to left, #F15F79, #B24592);  /* Chrome 10-25, Safari 5.1-6 */
     --background: linear-gradient(to left, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
+
+ion-button {
+    width: 6rem;
+    height: 6rem;
+    
+    position: fixed;
+    right: 0%;
+    bottom: 0%;
+
+    color: $secondary-color;
+    background-color: $primary-color;
+    box-shadow: 10px 5px 5px rgb(39, 39, 39);
+
+    border-radius: 100%;
+    border-style:dotted;
+    border-width: 1%;
+
+}
+  ion-button:hover {
+    background-color: rgb(71, 46, 211);
+    color: $primary-color;
+}
+
+p, h1, ion-label, a{
+  color:$secondary-color;
+  font-style:normal;
+  font-family: Courier, "Lucida Console", monospace;
+  text-align: center;
+}
+
+h1 {
+  font-size: 200%;
+  animation-duration: 5s;
+  animation-name: fadeIn;
+}
+
+ion-item {
+  --background: transparent;
 }

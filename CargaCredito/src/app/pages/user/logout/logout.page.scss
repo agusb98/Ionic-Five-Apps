@@ -13,3 +13,8 @@ ion-input,
 ion-item {
   --background: transparent;
 }
+
+ion-content{
+  animation-duration: 5s;
+  animation-name: slidein;
+}

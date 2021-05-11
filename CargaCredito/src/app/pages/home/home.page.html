@@ -5,6 +5,28 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-  <ion-button class="btnLogin" expand="block" shape="round" (click)="login()">Login</ion-button>
+  <!-- User Logged -->
+  <div *ngIf="user$ | async as user$; else login">
+    <ion-button
+      class="btnLogin"
+      expand="block"
+      shape="round"
+      (click)="logout()"
+      color="none"
+    >
+      Cerrar Sesión
+    </ion-button>
+  </div>
+
+  <!-- User not Logged -->
+  <ng-template #login>
+    <ion-button
+      class="btnLogin"
+      expand="block"
+      shape="round"
+      (click)="logout()"
+      color="none"
+      >Iniciar Sesión</ion-button
+    >
+  </ng-template>
 </ion-content>

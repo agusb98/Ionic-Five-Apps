@@ -9,11 +9,15 @@
   margin: 0 auto;
 }
 
-ion-input,
-ion-item {
+ion-input{
   --background: transparent;
 }
 
 .center-span{
-  color: rgb(173, 169, 169);
+  color: antiquewhite;
+}
+
+ion-button {
+  top: 11rem;
+  position: relative;
 }

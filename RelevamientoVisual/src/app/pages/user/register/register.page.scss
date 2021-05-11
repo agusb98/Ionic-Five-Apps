@@ -10,20 +10,15 @@
 }
 
 .text-danger {
-  color: #e23e57;
+  color: #3f2c92;
 }
 
-ion-item {
-  --background: transparent;
+a{
+  left: 0%;
+  position: absolute;
 }
 
-.a-login{
-  color: #f8f8f8;
-}
-
-.title{
-  color: black;
-  font-size: 200%;
-  text-align:center;
-  font-family: verdana;
+ion-button{
+  position: relative;
+  right: 0;
 }

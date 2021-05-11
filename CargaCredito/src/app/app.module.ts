@@ -24,7 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-center',
+      positionClass: 'toast-center-center',
       preventDuplicates: true
     })
   ],

@@ -51,7 +51,7 @@ export class AuthService {
     try {
       await this.afAuth.signOut();
       //this.vibration.vibrate([1000, 500, 1000]);
-      this.toastrService.success('Sesion Cerrada con Exito', 'Salir');
+      this.toastrService.success('Sesión Cerrada con Exito', 'Salir');
     }
     catch (error) { 
       //this.vibration.vibrate([1000]);

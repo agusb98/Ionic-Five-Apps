@@ -6,15 +6,23 @@
 
 <ion-content [fullscreen]="true">
   <ion-tabs>
-    <!-- Tab bar -->
     <ion-tab-bar slot="bottom">
-      <ion-tab-button>
-        <ion-icon name="log-in" routerLink="/user/login"> </ion-icon> Ingresar
-      </ion-tab-button>
-      <ion-tab-button>
-        <ion-icon name="log-out" routerLink="/user/logout"> </ion-icon> Cerrar
-        Sesion
-      </ion-tab-button>
+      
+      <!-- User Logged -->
+      <div *ngIf="user$ | async as user$; else login">
+        <ion-tab-button>
+          <ion-icon name="log-out" routerLink="/user/logout"> </ion-icon> Cerrar
+          Sesión
+        </ion-tab-button>
+      </div>
+
+      <!-- User not Logged -->
+      <ng-template #login>
+        <ion-tab-button>
+          <ion-icon name="log-in" routerLink="/user/login"> </ion-icon> Ingresar
+        </ion-tab-button>
+      </ng-template>
+
     </ion-tab-bar>
   </ion-tabs>
 </ion-content>

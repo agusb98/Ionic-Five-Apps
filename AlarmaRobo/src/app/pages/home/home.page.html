@@ -5,19 +5,19 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button>
-        <ion-icon name="log-in" routerLink="/user/login"> </ion-icon> Ingresar
-      </ion-tab-button>
-      <ion-tab-button>
-        <ion-icon name="log-out" routerLink="/user/logout"> </ion-icon> Cerrar
-        Sesion
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs> -->
 
-  <ion-button class="btnLogin" expand="block" shape="round" (click)="login()"
-    >Iniciar Sesion</ion-button
-  >
+  <!-- User Logged -->
+  <div *ngIf="user$ | async as user$; else login">
+    <ion-button class="btnLogin" expand="block" shape="round" (click)="logout()" color="none">
+      Cerrar Sesión      </ion-button
+    >
+  </div>
+
+  <!-- User not Logged -->
+  <ng-template #login>
+    <ion-button class="btnLogin" expand="block" shape="round" (click)="logout()" color="none"
+      >Iniciar Sesión</ion-button
+    >
+  </ng-template>
+
 </ion-content>

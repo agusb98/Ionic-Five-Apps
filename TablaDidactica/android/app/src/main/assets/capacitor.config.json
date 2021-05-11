@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "RelevamientoVisual",
+  "appName": "TablaDidactica",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

@@ -25,12 +25,75 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+$principal-color: #160d66;
+$secondary-color: #2aabe7;
+
 ion-toolbar {
-    --background: rgb(0, 0, 0);
+  --background: $principal-color;
 }
 
 ion-content {
-    --background: #3E5151;  /* fallback for old browsers */
-    --background: -webkit-linear-gradient(to right, #DECBA4, #3E5151);  /* Chrome 10-25, Safari 5.1-6 */
-    --background: linear-gradient(to right, #DECBA4, #3E5151); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  --background: #3E5151;  /* fallback for old browsers */
+  --background: -webkit-linear-gradient(to right, #DECBA4, #3E5151);  /* Chrome 10-25, Safari 5.1-6 */
+  --background: linear-gradient(to right, #DECBA4, #3E5151); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes rotate-scale-up{0%{transform:scale(1) rotateZ(0)}50%{transform:scale(2) rotateZ(180deg)}100%{transform:scale(1) rotateZ(360deg)}}
+
+@keyframes slidein {
+    from {
+      margin-bottom: 100%;
+      width: 300%
+    }
+  
+    to {
+      margin-bottom: 0%;
+      width: 100%;
+    }
+}
+
+ion-button {
+  //SET
+    color: $secondary-color;
+    background-color: $principal-color;
+    border-radius: 45%;
+
+    bottom: 0;
+    left: 32%;
+    position: fixed;
+
+    font-style: italic;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    text-align: center;
+
+    width: 30%;
+}
+  ion-button:hover {
+    color: $principal-color;
+    background-color: $secondary-color;
+    box-shadow: 0 0 1rem rgb(255, 255, 255);
+
+    animation-duration: 0.4s;
+    animation-name: rotate-scale-up;
+}
+
+p, h1, a, ion-title, span{
+  color: $principal-color;
+  text-shadow: 0 0 0.5rem rgb(255, 255, 255);
+  font-style:italic;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  text-align: center;
+}
+
+h1 {
+  font-size: 200%;
+}
+
+ion-item {
+  --background: transparent;
 }

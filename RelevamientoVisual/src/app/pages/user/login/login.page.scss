@@ -9,15 +9,17 @@
   margin: 0 auto;
 }
 
-ion-input,
-ion-item {
-  --background: transparent;
-}
-
 .text-danger {
-  color: #e23e57;
+  color: #23125c;
 }
 
-.a-register{
-  color: whitesmoke;
+a{
+  left: 0%;
+  position: absolute;
+  top: 5rem;
+}
+
+ion-button{
+  position: relative;
+  right: 0;
 }

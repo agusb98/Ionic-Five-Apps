@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  public user$: Observable<any> = this.authService.afAuth.user;
 
+  constructor(private authService: AuthService, private router: Router) { }
+
+  logout() {
+    this.router.navigate(['user/logout']);
+  }
 }

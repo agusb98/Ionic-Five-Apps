@@ -18,12 +18,13 @@
 }
 
 .programmerData {
-  color: rgb(245, 185, 222);
-  font-size: 32px;
-  font-family: cursive;
+  font-size: 2rem;
   font-weight: bold;
+  text-shadow: 0.5rem 0.5rem 0.5rem rgb(42, 165, 214);
+  animation-duration: 2s;
+  animation-name: slidein;
 }
 
 #pDivision {
-  font-size: 22px;
+  font-size: 1.5rem;
 }

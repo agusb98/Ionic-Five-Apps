@@ -17,13 +17,13 @@
   }
 }
 
-.programmerData {
-  color: rgb(165, 51, 36);
-  font-size: 32px;
-  font-family: cursive;
-  font-weight: bold;
+.programmerData,
+#pDivision {
+  font-size: 2rem;
+  animation-duration: 2s;
+  animation-name: rotate-scale-up;
 }
 
 #pDivision {
-  font-size: 22px;
+  font-size: 1.5rem;
 }

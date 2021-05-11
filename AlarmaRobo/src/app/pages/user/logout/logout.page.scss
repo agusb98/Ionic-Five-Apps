@@ -1,6 +1,5 @@
 .center-span {
   display: block;
-  text-align: center;
 }
 
 .icon {
@@ -9,7 +8,7 @@
   margin: 0 auto;
 }
 
-ion-input,
-ion-item {
-  --background: transparent;
+ion-button{
+  width: 6rem;
+  height: 3rem;
 }
