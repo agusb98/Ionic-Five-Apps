@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" style="text-align: center">
+  <form>
+    <ion-item lines="full">
+      <img class="icon" src="../../../../assets/img/login-splash.png" alt="" />
+      <ion-label
+        position="floating"
+        style="
+          color: rgb(136, 9, 9);
+          text-align: center;
+          font-family: 'Brush Script MT', cursive;
+        "
+      >
+        Email <span class="text-danger">*</span></ion-label
+      >
+      <ion-input type="text" #email required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label
+        position="floating"
+        style="
+          color: rgb(136, 9, 9);
+          text-align: center;
+          font-family: 'Brush Script MT', cursive;
+        "
+      >
+        Contraseña <span class="text-danger">*</span></ion-label
+      >
+      <ion-input type="password" #password required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button
+          type="submit"
+          (click)="onLogin(email, password)"
+          expand="block"
+          color="none"
+          >Ingresar</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button
+          id="buttonRegister"
+          type="submit"
+          (click)="onRegister(email, password)"
+          expand="block"
+          color="none"
+          >Registrarse</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

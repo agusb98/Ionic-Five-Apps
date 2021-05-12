@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Chat de División: {{ this.className }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row *ngFor="let message of chat | async">
+      <ion-col size="9" *ngIf="message.from != this.email">
+        <ion-card class="some-message">
+          {{message.from}}
+          <ion-card-content class="card-content-message">
+            {{message.message}}
+            <p class="info">{{message.date}}, {{message.time}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col offset="3" size="9" *ngIf="message.from == this.email">
+        <ion-card class="user-message">
+          <ion-card-content class="card-content-message">
+            {{message.message}}
+            <p class="info">{{message.date}}, {{message.time}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-input
+    placeholder="Escribe un mensaje aquí.."
+    [(ngModel)]="this.message.message"
+  ></ion-input>
+  <ion-icon
+    type="submit"
+    (click)="send()"
+    name="send"
+    id="sendButton"
+  ></ion-icon>
+</ion-footer>

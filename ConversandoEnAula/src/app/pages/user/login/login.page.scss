@@ -1,0 +1,24 @@
+.icon {
+  top: 1rem;
+  position: relative;
+}
+
+form{
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+form, ion-row{
+  top: 4rem;
+  position: relative;
+}
+
+.icon {
+  max-width: 32vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.text-danger {
+  color: #e23e57;
+}

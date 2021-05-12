@@ -1,0 +1,18 @@
+.container {
+  animation:jello-vertical 3s infinite both;
+  img {
+    height: 14rem;
+    margin-top: 50%;
+  }
+}
+
+.programmerData,
+#pDivision {
+  font-size: 2rem;
+  animation-duration: 4s;
+  animation-name: fadeIn;
+}
+
+#pDivision {
+  font-size: 1.5rem;
+}

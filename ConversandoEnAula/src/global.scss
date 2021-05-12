@@ -1,0 +1,73 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+$primary-color: rgb(11, 90, 28);
+$secondary-color: rgb(136, 9, 9);
+
+ion-toolbar {
+  --background: $primary-color;
+}
+
+ion-content {
+  --background: #f79d00; /* fallback for old browsers */
+  --background: -webkit-linear-gradient(to bottom,#64f38c,#f79d00
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  --background: linear-gradient(to bottom,#64f38c,#f79d00
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+ion-button {
+  background-color: $secondary-color;
+  color: rgb(240, 138, 138);
+  border-radius: 100%;
+  border-style:outset;
+  border-color: rgb(240, 138, 138);
+}
+ion-button:hover {
+  background-color: $primary-color;
+  color:rgb(120, 231, 120);
+  border-color: rgb(120, 231, 120);
+}
+
+p, h1, a, ion-title, span{
+  color: $primary-color;
+  text-shadow: 0 0 1rem whitesmoke;
+  font-family: 'Brush Script MT', cursive;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes jello-vertical{0%{transform:scale3d(1,1,1)}30%{transform:scale3d(.75,1.25,1)}40%{transform:scale3d(1.25,.75,1)}50%{transform:scale3d(.85,1.15,1)}65%{transform:scale3d(1.05,.95,1)}75%{transform:scale3d(.95,1.05,1)}100%{transform:scale3d(1,1,1)}}
+
+ion-item {
+  --background: transparent;
+}
+
