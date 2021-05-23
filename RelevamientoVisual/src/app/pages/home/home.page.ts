@@ -10,9 +10,22 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HomePage {
 
+  public kindSelected: string = 'nice';
   public user$: Observable<any> = this.authService.afAuth.user;
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  choose(status: boolean, user: Observable<any>) {
+    if (user) {
+      if (status) {
+        this.router.navigateByUrl('/list/nice')
+      }
+      else { this.router.navigateByUrl('/list/bad'); }
+    }
+    if (!user) {
+      this.authService.userNotLoggedNotification();
+    }
+  }
 
   logout() {
     this.router.navigate(['user/logout']);

@@ -6,7 +6,14 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
   { path: 'splash', loadChildren: () => import('./pages/splash/splash.module').then(m => m.SplashPageModule) },
   { path: 'user', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
-  { path: 'spinner', loadChildren: () => import('./pages/spinner/spinner.module').then( m => m.SpinnerPageModule) }
+  {
+    path: 'list/nice',
+    loadChildren: () => import('./pages/pictures/list-nice/list-nice.module').then( m => m.ListNicePageModule)
+  },
+  {
+    path: 'list/bad',
+    loadChildren: () => import('./pages/pictures/list-bad/list-bad.module').then( m => m.ListBadPageModule)
+  },
 ];
 
 @NgModule({

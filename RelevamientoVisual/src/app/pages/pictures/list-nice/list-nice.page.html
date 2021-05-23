@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Listado Fotos Lindas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" style="text-align: center">
+  <ion-list *ngFor="let data of listPhotos | async">
+    <ion-item>
+      <ion-label>{{ data }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <div>
+      <ion-buttons>
+        <ion-fab>
+          <ion-fab-button (click)="add()" style="margin: 285%">
+            <ion-icon name="camera"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </ion-buttons>
+    </div>
+    <ion-buttons slot="end" routerLink="../misfotos">
+      <ion-button
+        >Mis fotos
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-footer>

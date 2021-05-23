@@ -13,6 +13,11 @@ import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { DeviceMotion } from '@ionic-native/device-motion/ngx';
+import { Flashlight } from '@ionic-native/flashlight/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -28,7 +33,13 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
     })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    ScreenOrientation,
+    DeviceMotion,
+    Flashlight,
+    Vibration,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

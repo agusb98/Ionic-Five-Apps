@@ -25,7 +25,7 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-$primary-color: rgb(11, 90, 28);
+$primary-color: rgb(146, 224, 238);
 $secondary-color: rgb(136, 9, 9);
 
 ion-toolbar {
@@ -33,24 +33,46 @@ ion-toolbar {
 }
 
 ion-content {
-  --background: #f79d00; /* fallback for old browsers */
-  --background: -webkit-linear-gradient(to bottom,#64f38c,#f79d00
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  --background: linear-gradient(to bottom,#64f38c,#f79d00
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  --background: rgb(2,0,36);
+  --background: linear-gradient(90deg, rgba(2,0,36,1) 20%, rgba(9,121,37,1) 50%, rgba(127,144,148,1) 80%);
 }
 
-ion-button {
-  background-color: $secondary-color;
-  color: rgb(240, 138, 138);
-  border-radius: 100%;
-  border-style:outset;
-  border-color: rgb(240, 138, 138);
+/* BUTTONS */
+
+.field-button {
+	display: flex;
+	width: 330px;
+	justify-content: space-around;
+  text-align: center;
 }
-ion-button:hover {
-  background-color: $primary-color;
-  color:rgb(120, 231, 120);
-  border-color: rgb(120, 231, 120);
+
+.sns-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 8rem;
+	width: 8rem;
+	border-radius: 50%;
+	border: none;
+	transition-duration: .5s;
+	transform: rotateX(45deg);
+	box-shadow: 0px 10px 5px rgb(0, 0, 0);
+	cursor: pointer;
+	&--button-class {
+		background-color: #3b5998;
+	}
+  &--button-user {
+		background-color: #51983b;
+	}
+	&:hover {
+		transform: scale(1.2);
+		box-shadow: none;
+	}
+	&__icon {
+		font-size: 33px;
+		letter-spacing: 0.1em;
+		color: #fff;
+	}
 }
 
 p, h1, a, ion-title, span{

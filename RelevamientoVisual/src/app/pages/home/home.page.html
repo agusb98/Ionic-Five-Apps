@@ -1,17 +1,23 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Inicio </ion-title>
+    <ion-title>Chat de Cursos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
+<ion-content [fullscreen]="true" style="text-align: center">
   <!-- User Logged -->
-  <div *ngIf="user$ | async as user$; else login">
+  <ion-content *ngIf="user$ | async as user$; else login">
+    <ion-card class="btn class-a" (click)="choose(true, user$)">
+      <p>COSAS LINDAS DEL EDIFICIO</p>
+    </ion-card>
+  
+    <ion-card class="btn class-b" (click)="choose(false, user$)">
+      <p style="color: rgb(187, 21, 54);">COSAS FEAS DEL EDIFICIO</p>
+    </ion-card>
     <ion-button class="btnLogin" shape="round" (click)="logout()" color="none"
       >Cerrar Sesión</ion-button
     >
-  </div>
+  </ion-content>
 
   <!-- User not Logged -->
   <ng-template #login>
@@ -19,5 +25,4 @@
       >Iniciar Sesión</ion-button
     >
   </ng-template>
-
 </ion-content>

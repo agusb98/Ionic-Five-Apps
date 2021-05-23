@@ -54,9 +54,10 @@ export class AuthService {
       this.toastrService.success('Sesión Cerrada con Exito', 'Salir');
       this.user = null;
     }
-    catch (error) { 
+    catch (error) {
       //this.vibration.vibrate([1000]);
-      this.toastrService.error(error.message, 'Cerrar Sesión'); }
+      this.toastrService.error(error.message, 'Cerrar Sesión');
+    }
     return;
   }
 
@@ -66,5 +67,9 @@ export class AuthService {
     }
     catch (error) { }
     return;
+  }
+
+  userNotLoggedNotification() {
+    this.toastrService.error('Primero debe Ingresar Sesión', 'Cerrar Sesión');
   }
 }

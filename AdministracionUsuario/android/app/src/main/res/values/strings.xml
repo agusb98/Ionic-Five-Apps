@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">AdministracionUsuario</string>
-    <string name="title_activity_main">AdministracionUsuario</string>
-    <string name="package_name">io.administracionUsuario</string>
-    <string name="custom_url_scheme">io.administracionUsuario</string>
-</resources>

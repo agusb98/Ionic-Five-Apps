@@ -1,0 +1,113 @@
+ion-row{
+    min-height: 5em;
+}
+#colores,#animales,#numeros{
+    position: absolute;
+    left: 0%;
+    z-index: 99999;
+    border-radius: 100%;
+}
+#colores{
+    top: 12%;
+    
+}
+#animales{
+    top: 24%;
+    
+}
+#numeros{
+    top: 36%;
+
+}
+#lenguajes{
+    top: 1%;
+    position: absolute;
+    left: 81%;
+    border-radius: 100%;
+    width: 4em;
+    height: 4em;
+    display: inline-block;
+}
+#tema{
+    position: absolute;
+    top: 1% !important;
+    left: 1%;
+    margin-bottom: 0;
+}
+#selectorTemas{
+    img{
+        width: 4em;
+        height: 4em;
+        display: inline-block;
+    }
+}
+#flagEu{
+    top: 12%;
+}
+#flagBr{
+    top: 24%;
+}
+#flagArg{
+    top: 36%;
+}
+#flagEu,
+#flagBr,
+#flagArg{
+    position: absolute;
+    left: 81%;
+    z-index: 99999;
+}
+ion-content{
+    --background:none;
+    background: url("../../assets/images/background-jungle.jpg") no-repeat center / cover;
+}
+.centrado{
+    text-align: center;
+}
+.imagen-Icon{
+    width: 5em;
+    height: 5em;
+}
+.flag{
+    width: 4em;
+    height: 4em;
+}
+
+
+
+.centrado{
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.39);
+    border-radius: 3%;
+}
+#header{
+    --background:none;
+    background-color: rgba(218, 51, 51, 0);
+    // background: url("../../assets/images/background-jungle.jpg") no-repeat center / cover;
+}
+.flag, .animal-Icon{
+    -webkit-transition:all 1s ease;
+    -moz-transition:all 1s ease;
+    -o-transition:all 1s ease;
+}
+.flag-active{
+    height: 3.8em;
+    width: 3.8em;
+    border-radius: 30%;
+    background-color: rgba(219, 20, 20, 0.534);
+}
+.animal-Icon:hover
+{
+    height: 4em;
+    width: 4em;
+    border-radius: 30%;
+     background-color: rgba(255, 255, 255, 0.534);
+}
+.flag:hover{
+    height: 3.8em;
+    width: 3.8em;
+    border-radius: 30%;
+    background-color: rgba(255, 255, 255, 0.534);
+    background-color: rgba(219, 20, 20, 0.534);
+    
+}

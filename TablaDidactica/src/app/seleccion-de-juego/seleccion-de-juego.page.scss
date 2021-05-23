@@ -1,0 +1,51 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+img{
+    height: 13em;
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 30px;
+}
+
+.container:last-child{
+    margin-bottom: 0px;
+}
+
+.desdeDerecha{
+    animation-duration: 3s;
+    animation-name: desdeDerecha;
+}
+.desdeIzquierda{
+    animation-duration: 3s;
+    animation-name: desdeIzquierda;
+}
+@keyframes desdeIzquierda{
+    from{
+        margin-left: -100%;
+        width: 100%;
+    }
+    to{
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+@keyframes desdeDerecha{
+    from{
+        margin-left: 100%;
+        width: 100%;
+    }
+    to{
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+#btn-logout{
+    --background:none;
+    min-width: 100%;
+    outline-offset: 15px;
+    background-color: rgba(252, 188, 71, 0.562);
+}

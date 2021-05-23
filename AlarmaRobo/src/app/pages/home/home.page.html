@@ -11,6 +11,7 @@
     <ion-button class="btnLogin" expand="block" shape="round" (click)="logout()" color="none">
       Cerrar Sesión      </ion-button
     >
+    <ion-toggle checked="{{ this.presionado }}" (ionChange)="myChange($event.checked)" color="danger"></ion-toggle>
   </div>
 
   <!-- User not Logged -->

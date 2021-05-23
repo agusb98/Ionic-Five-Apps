@@ -32,9 +32,15 @@
               }
             ],
             "styles": [
-              "src/theme/variables.scss",
-              "src/global.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              {
+                "input": "src/theme/variables.scss"
+              },
+              {
+                "input": "src/global.scss"
+              },
+              {
+                "input": "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              }
             ],
             "scripts": []
           },
@@ -49,6 +55,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -117,9 +124,14 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {

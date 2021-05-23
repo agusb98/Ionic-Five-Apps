@@ -7,34 +7,41 @@
 <ion-content [fullscreen]="true">
   <!-- User Logged -->
   <div *ngIf="user$ | async as user$; else login">
-
-    <ion-button
-      expand="block"
-      shape="round"
-      (click)="chooseClass()"
-      color="none"
-    >
-      Seleccione Clase
-    </ion-button>
-    <ion-button
-      expand="block"
-      shape="round"
-      (click)="logout()"
-      color="none"
-    >
-      Cerrar Sesión
-    </ion-button>
+    <div class="field-button">
+      <a class="sns-btn sns-btn--button-class">
+        <ion-button
+          expand="block"
+          shape="round"
+          (click)="chooseClass()"
+          color="none"
+        >
+          Aulas
+        </ion-button>
+      </a>
+      <a class="sns-btn sns-btn--button-user">
+        <ion-button
+          expand="block"
+          shape="round"
+          (click)="logout()"
+          color="none"
+        >
+          Cerrar Sesión
+        </ion-button>
+      </a>
+    </div>
   </div>
 
   <!-- User not Logged -->
   <ng-template #login>
-    <ion-button
-      class="btnLogin"
-      expand="block"
-      shape="round"
-      (click)="logout()"
-      color="none"
-      >Iniciar Sesión</ion-button
-    >
+    <a class="sns-btn sns-btn--button-user" id="buttonLogin">
+      <ion-button
+        class="btnLogin"
+        expand="block"
+        shape="round"
+        (click)="logout()"
+        color="none"
+        >Iniciar Sesión</ion-button
+      >
+    </a>
   </ng-template>
 </ion-content>

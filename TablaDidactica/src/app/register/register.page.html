@@ -1,0 +1,34 @@
+<ion-content text-center class="background-image">
+  <ion-grid>
+    <ion-card-content class="card-content">
+      <ion-row>
+        <div class="centrado">
+          <h1>Registrarse</h1>
+        </div>
+        <ion-col size="12">
+          <ion-input type="email" [(ngModel)]="user.email" class="customInput" placeholder="Correo"
+            value="{{user.email}}">
+            <ion-icon class="iconos" name="contact"></ion-icon>
+          </ion-input>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input type="password" [(ngModel)]="user.password" class="customInput" placeholder="Clave"
+            value="{{user.password}}">
+            <ion-icon class="iconos" name="key"></ion-icon>
+          </ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+    <ion-row>
+
+      <ion-col size="8" offset="2">
+        <ion-button expand="block" id="btn-Login" (click)="OnRegister()">Registrarse</ion-button>
+      </ion-col>
+
+      <ion-col size="8" offset="2">
+        <ion-button expand="block" id="btn-Login" (click)="OnLogin()">Ingresar</ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

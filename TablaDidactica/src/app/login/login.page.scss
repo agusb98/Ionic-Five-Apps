@@ -1,0 +1,97 @@
+.background-image{
+    --background:none;
+    background: url("../../assets/images/background-granja.jpg") no-repeat center / cover;
+}
+.divPerfil{
+    display: inline-block;
+}
+.centrado{
+    text-align: center;
+}
+.imagenUsuario
+{
+    width: 5em;
+    height: 5em;
+}
+
+ion-card-header{
+  
+    p{
+        color:rgb(24, 102, 248);
+        font-size: 2em;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    }
+    h1{
+        color:rgb(0, 247, 255);
+        font-size: 2em;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  
+    }
+}
+.card-content{
+     width: 80%;
+     position: relative;
+     margin-right: auto;
+     margin-left: auto;
+     background-color:#008cff63;
+     border-bottom-left-radius: 40%;
+    border-bottom-right-radius: 40%;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    padding-bottom: 100px;
+
+
+}
+.centrado{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+h1{
+    font-size: 350%;
+    color:white;
+    font-family: serif;
+}
+.customInput{
+    padding:0px;
+    --background:none;
+    background-color:rgba(255, 255, 255, 0.788);
+    text-align: start;
+    
+    // background: url("../../assets/images/background-granja.jpg") no-repeat center / cover;
+
+
+}
+.iconos{
+    width: 40px;
+    height: 40px;
+    color:#008cff86;
+
+}
+#btn-Login{
+    --background:none;
+    min-width: 100%;
+    outline-offset: 15px;
+    background-color: rgba(252, 188, 71, 0.562);
+}
+
+.imagenUsuario{
+    animation-duration: 3s;
+    animation-delay: 2.5s;
+    animation-name: animacion;
+}
+@keyframes animacion{
+    from{
+        opacity: 0;
+    }
+    50%{
+        transform: rotateZ(150deg);
+        opacity: 0.5;
+        
+    }
+    to{
+        transform: rotateY(360deg);
+        opacity: 1;
+
+    }
+}

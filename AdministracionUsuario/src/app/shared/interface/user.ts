@@ -1,8 +1,8 @@
 export class User {
-    id: string = '';
     name: string = '';
     surname: string = '';
+    dni: string = '';
     email: string = '';
     password: string = '';
-    status: boolean = true;
+    status: boolean = false;
 }
