@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit {
     if(user)
     {
       console.log('Registro Exitoso');
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/seleccion-de-juego');
     }
   }
 
