@@ -1,3 +1,10 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- SPLASH -->
+  <div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+   <div class="flb">
+     <img id="logoAnimado" src="../assets/images/stolen.png">
+   </div>
+ </div>
+ <!-- END Splash -->
+<ion-router-outlet></ion-router-outlet>
 </ion-app>

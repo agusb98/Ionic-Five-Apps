@@ -1,6 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
+//  Send unauthorized users to login
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo(['user/login']);
+
+//  Automatically log in users
+const redirectLoggedInToHome = () =>
+  redirectLoggedInTo(['home']);
+  
 const routes: Routes = [
   { path: '', redirectTo: 'splash', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
@@ -8,11 +17,11 @@ const routes: Routes = [
   { path: 'user', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
   {
     path: 'chat',
-    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+    loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatPageModule)
   },
   {
     path: 'room',
-    loadChildren: () => import('./pages/room/room.module').then( m => m.RoomPageModule)
+    loadChildren: () => import('./pages/room/room.module').then(m => m.RoomPageModule)
   },
 ];
 

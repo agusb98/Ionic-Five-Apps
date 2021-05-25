@@ -23,8 +23,12 @@ export class ChatPage implements OnInit {
   }
 
   send() {
+    let date: Date = new Date();
+
     this.message.from = this.email;
     this.message.class = this.className;
+    this.message.date = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
+    this.message.time = date.getHours() + ':' + date.getMinutes();
 
     if (this.chatService.checkMessage(this.message)) {
       if (this.chatService.createOne(this.message, 'chat-' + this.className)) {

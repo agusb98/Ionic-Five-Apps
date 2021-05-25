@@ -1,5 +1,5 @@
 {
-  "name": "TablaDidactica",
+  "name": "ConversandoEnAula",
   "integrations": {
     "capacitor": {
       "enabled": false

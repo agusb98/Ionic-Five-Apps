@@ -8,6 +8,16 @@
   <form>
     <ion-item lines="full">
       <img class="icon" src="../../../../assets/img/login-splash.png" alt="" />
+
+      <ion-item id="divUsuarios" color="none" lines="none">
+        <ion-icon
+          class="iconUser"
+          name="logo-reddit"
+          *ngFor="let usuario of listaUsuarios"
+          (click)="seleccionarUsuario(usuario)"
+        ></ion-icon>
+      </ion-item>
+
       <ion-label
         position="floating"
         style="
@@ -18,7 +28,15 @@
       >
         Email <span class="text-danger">*</span></ion-label
       >
-      <ion-input type="text" #email required></ion-input>
+      <ion-input
+        class="centrado"
+        type="email"
+        placeholder="Ingrese su correo"
+        [(ngModel)]="user.email"
+        name="email"
+        required
+      >
+      </ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label
@@ -31,13 +49,22 @@
       >
         Contraseña <span class="text-danger">*</span></ion-label
       >
-      <ion-input type="password" #password required></ion-input>
+      <ion-input
+        class="centrado"
+        type="password"
+        placeholder="Ingrese su Contraseña"
+        [(ngModel)]="user.password"
+        name="password"
+        required
+      >
+      </ion-input>
     </ion-item>
+
     <div class="field-button">
       <a class="sns-btn sns-btn--button-class">
         <ion-button
           type="submit"
-          (click)="onLogin(email, password)"
+          (click)="onLogin()"
           expand="block"
           color="none"
           >Ingresar</ion-button
@@ -47,7 +74,7 @@
         <ion-button
           id="buttonRegister"
           type="submit"
-          (click)="onRegister(email, password)"
+          (click)="onRegister()"
           expand="block"
           color="none"
           >Registrarse</ion-button

@@ -9,6 +9,59 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+
+ /* https://cssgradient.io/ */
+
+$primary-color: rgb(39, 7, 126);
+$secondary-color: aliceblue;
+
+ion-content {
+    --background: rgb(34,193,195);
+    --background: linear-gradient(31deg, rgba(34,193,195,1) 0%, rgba(235,229,218,1) 50%);
+}
+
+ion-content {
+    ion-card {
+      background: transparent;
+      ion-card-content {
+        margin-bottom: 0;
+      }
+      * {
+        color: $primary-color;
+      }
+    }
+  }
+
+ion-button{
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 40%;
+}
+
+ion-button:hover{
+    background-color: $primary-color;
+    color: $secondary-color;
+    border-radius: 50%;
+}
+  
+.centrado{
+    text-align: center;
+}
+
+@keyframes rebote{
+    from{
+        transform: scaleX(1.25) scaleY(0.75);
+    }
+    50%{
+        transform: scaleX(0.75) scaleY(1.25);
+    }
+    60%{
+        transform: scaleX(1.15) scaleY(0.85);
+    }
+    to{
+        transform: scaleX(1.15) scaleY(0.85);
+    }
+}
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 
@@ -24,72 +77,3 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-
-$primary-color: rgb(211, 46, 147);
-$secondary-color: rgb(14, 4, 107);
-
-ion-toolbar {
-    --background: $primary-color;
-}
-
-ion-content {
-    --background: #B24592;  /* fallback for old browsers */
-    --background: -webkit-linear-gradient(to left, #F15F79, #B24592);  /* Chrome 10-25, Safari 5.1-6 */
-    --background: linear-gradient(to left, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes slidein {
-    from {
-      margin-left: 100%;
-      width: 300%
-    }
-  
-    to {
-      margin-left: 0%;
-      width: 100%;
-    }
-  }
-
-ion-button {
-    width: 6rem;
-    height: 6rem;
-    
-    position: fixed;
-    right: 0%;
-    bottom: 0%;
-
-    color: $secondary-color;
-    background-color: $primary-color;
-    box-shadow: 10px 5px 5px rgb(39, 39, 39);
-
-    border-radius: 100%;
-    border-style:dotted;
-    border-width: 1%;
-
-}
-  ion-button:hover {
-    background-color: rgb(71, 46, 211);
-    color: $primary-color;
-}
-
-p, h1, ion-label, a{
-  color:$secondary-color;
-  font-style:normal;
-  font-family: Courier, "Lucida Console", monospace;
-  text-align: center;
-}
-
-h1 {
-  font-size: 200%;
-  animation-duration: 5s;
-  animation-name: fadeIn;
-}
-
-ion-item {
-  --background: transparent;
-}

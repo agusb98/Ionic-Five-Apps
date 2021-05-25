@@ -1,9 +1,6 @@
 {
-  "name": "CargaCredito",
+  "name": "login",
   "integrations": {
-    "capacitor": {
-      "enabled": false
-    },
     "cordova": {}
   },
   "type": "angular"

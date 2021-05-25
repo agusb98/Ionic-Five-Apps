@@ -3,43 +3,43 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AngularFireModule} from '@angular/fire';
+import { AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ToastrModule } from 'ngx-toastr';
-
-import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { ScreenOrientation} from '@ionic-native/screen-orientation/ngx';
+import { NativeAudio} from '@ionic-native/native-audio/ngx';
 import { DeviceMotion } from '@ionic-native/device-motion/ngx';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
-
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,
+    SpinnerComponent
+  ],
   entryComponents: [],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
+  imports: [BrowserModule, 
+    IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-center',
-      preventDuplicates: true,
-    })
   ],
   providers: [
+    StatusBar,
+    SplashScreen,
     ScreenOrientation,
-    DeviceMotion,
+    NativeAudio,
     Flashlight,
+    DeviceMotion,
     Vibration,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

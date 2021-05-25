@@ -28,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true
     })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [AngularFireAuthModule, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

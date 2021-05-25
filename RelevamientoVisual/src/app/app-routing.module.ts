@@ -1,18 +1,37 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+//  Send unauthorized users to login
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo(['login']);
+
+//  Automatically log in users
+const redirectLoggedInToHome = () =>
+  redirectLoggedInTo(['home']);
+
 const routes: Routes = [
-  { path: '', redirectTo: 'splash', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
-  { path: 'splash', loadChildren: () => import('./pages/splash/splash.module').then(m => m.SplashPageModule) },
-  { path: 'user', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
-    path: 'list/nice',
-    loadChildren: () => import('./pages/pictures/list-nice/list-nice.module').then( m => m.ListNicePageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
-    path: 'list/bad',
-    loadChildren: () => import('./pages/pictures/list-bad/list-bad.module').then( m => m.ListBadPageModule)
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule),
+    ...canActivate(redirectLoggedInToHome)
+  },
+  {
+    path: 'logout',
+    loadChildren: () => import('./logout/logout.module').then(m => m.LogoutPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
 ];
 
@@ -23,3 +42,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

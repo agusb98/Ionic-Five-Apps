@@ -34,3 +34,75 @@ form, ion-row{
   top: 80%;
   left: 32%;
 }
+
+#divUsuarios {
+  animation-name: rightIn;
+  animation-duration: 3s;
+  .iconUser {
+    font-size: 400%;
+  }
+  .iconUser:hover {
+    animation-name: rotarLlave;
+    animation-duration: 10s;
+  }
+}
+//ANIMACIONES
+@keyframes rotarLlave {
+  from {
+    color: red;
+    transform: rotateZ(0deg);
+  }
+  30% {
+    transform: rotateY(180deg) translate(0px, 0px); //skew(-3deg, 20deg);
+  }
+  80% {
+    color: red;
+  }
+  to {
+    color: white;
+  }
+}
+@keyframes rightIn {
+  from {
+    margin-left: 80%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+@keyframes rightInImg {
+  from {
+    position: absolute;
+    min-height: 223px;
+    left: 120%;
+  }
+  to {
+    position: absolute;
+    min-height: 223px;
+    left: 48.5%;
+  }
+}
+@keyframes leftInImg {
+  from {
+    position: absolute;
+    min-height: 223px;
+    left: -50%;
+  }
+  to {
+    position: absolute;
+    min-height: 223px;
+    left: 0%;
+  }
+}
+
+@keyframes zoom {
+  from {
+    max-width: 0%;
+    max-height: 0%;
+  }
+  to {
+    max-width: 100%;
+    max-height: 30%;
+  }
+}

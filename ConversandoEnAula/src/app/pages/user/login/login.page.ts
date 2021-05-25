@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { User } from 'src/app/shared/user';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,30 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
+
+  @Input() listaUsuarios = [{ "id": 1, "email": "admin@admin.com", "password": "111111", "perfil": "admin", "sexo": "femenino", "name": "admin" },
+  { "id": 2, "email": "invitado@invitado.com", "password": "222222", "perfil": "invitado", "sexo": "femenino", "name": "invitado" },
+  { "id": 3, "email": "usuario@usuario.com", "password": "333333", "perfil": "usuario", "sexo": "masculino", "name": "usuario" },
+  { "id": 4, "email": "anonimo@anonimo.com", "password": "444444", "perfil": "usuario", "sexo": "masculino", "name": "anonimo" },
+  { "id": 5, "email": "tester@tester.com", "password": "555555", "perfil": "tester", "sexo": "femenino", "name": "tester" }]
+
+  user: User = new User();
+
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
-  async onLogin(email, password) {
+  seleccionarUsuario(user) {
+    this.user.email = user.email;
+    this.user.password = user.password;
+  }
+
+  async onLogin() {
     try {
-      const user = await this.authService.login(email.value, password.value);
+      const user = await this.authService.login(this.user.email, this.user.password);
       if (user) {
-        localStorage.setItem('email', email.value); //Save user data in the local storage
+        localStorage.setItem('email', this.user.email); //Save user data in the local storage
         /* const isVerified = this.authService.isEmailVerified(user);
         this.redirectUser(isVerified, 'home', 'verify-email'); */
         this.router.navigate(['home']);
@@ -26,11 +41,11 @@ export class LoginPage {
     catch (error) { }
   }
 
-  async onRegister(email, password) {
+  async onRegister() {
     try {
-      const user = await this.authService.register(email.value, password.value);
+      const user = await this.authService.register(this.user.email, this.user.password);
       if (user) {
-        localStorage.setItem('email', email); //Save user data in the local storage
+        localStorage.setItem('email', this.user.email); //Save user data in the local storage
         this.router.navigate(['/home']);
       }
     }
