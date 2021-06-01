@@ -35,7 +35,7 @@ export class LoginPage {
         localStorage.setItem('email', this.user.email); //Save user data in the local storage
         /* const isVerified = this.authService.isEmailVerified(user);
         this.redirectUser(isVerified, 'home', 'verify-email'); */
-        this.router.navigate(['home']);
+        this.router.navigate(['room']);
       }
     }
     catch (error) { }
@@ -46,7 +46,7 @@ export class LoginPage {
       const user = await this.authService.register(this.user.email, this.user.password);
       if (user) {
         localStorage.setItem('email', this.user.email); //Save user data in the local storage
-        this.router.navigate(['/home']);
+        this.router.navigate(['/room']);
       }
     }
     catch (error) { }

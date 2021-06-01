@@ -12,7 +12,6 @@ const redirectLoggedInToHome = () =>
   
 const routes: Routes = [
   { path: '', redirectTo: 'splash', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
   { path: 'splash', loadChildren: () => import('./pages/splash/splash.module').then(m => m.SplashPageModule) },
   { path: 'user', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
   {

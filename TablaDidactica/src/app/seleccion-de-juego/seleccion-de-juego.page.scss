@@ -1,3 +1,8 @@
+.background-image{
+    --background:none;
+    background: url("../../assets/images/background-granja.jpg") no-repeat center / cover;
+}
+
 *{
     margin: 0px;
     padding: 0px;
@@ -47,5 +52,10 @@ img{
     --background:none;
     min-width: 100%;
     outline-offset: 15px;
-    background-color: rgba(252, 188, 71, 0.562);
+    background-color: rgb(252, 189, 71);
+}
+
+#btn-logout{
+    top:94%;
+    position: fixed;
 }

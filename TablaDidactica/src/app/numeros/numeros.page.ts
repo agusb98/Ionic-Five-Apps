@@ -14,7 +14,7 @@ export class NumerosPage implements OnInit {
   public idiomaSeleccionado: string = "ar";
   public numeros: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   constructor() { }
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.seleccionarIdiomaLatino();
     setTimeout(() => {
 
@@ -23,11 +23,13 @@ export class NumerosPage implements OnInit {
     }, 200);
   }
   toggleTemas() {
-    this.temas ? this.temas = false : this.temas = true;
+    if (this.temas) { this.temas = false; }
+    else { this.temas = true; this.lenguajes = false; }
   }
+
   toggleLenguajes() {
-    this.lenguajes ? this.lenguajes = false : this.lenguajes = true;
-    console.log(this.lenguajes);
+    if (this.lenguajes) { this.lenguajes = false; }
+    else { this.lenguajes = true; this.temas = false; }
   }
   ngOnInit() {
     setTimeout(() => {

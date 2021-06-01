@@ -14,12 +14,15 @@ export class ColoresPage implements OnInit {
   constructor() { }
   public temas = false;
   public lenguajes = false;
+  
   toggleTemas() {
-    this.temas ? this.temas = false : this.temas = true;
+    if (this.temas) { this.temas = false; }
+    else { this.temas = true; this.lenguajes = false; }
   }
+
   toggleLenguajes() {
-    this.lenguajes ? this.lenguajes = false : this.lenguajes = true;
-    console.log(this.lenguajes);
+    if (this.lenguajes) { this.lenguajes = false; }
+    else { this.lenguajes = true; this.temas = false; }
   }
   ionViewWillEnter(){
     this.seleccionarIdiomaLatino();

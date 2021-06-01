@@ -14,11 +14,15 @@ export class AnimalesPage implements OnInit {
   public euActive: boolean = false;
   public temas = false;
   public lenguajes = false;
- toggleTemas() {
-    this.temas ? this.temas = false : this.temas = true;
+
+  toggleTemas() {
+    if (this.temas) { this.temas = false; }
+    else { this.temas = true; this.lenguajes = false; }
   }
+
   toggleLenguajes() {
-    this.lenguajes ? this.lenguajes = false : this.lenguajes = true;
+    if (this.lenguajes) { this.lenguajes = false; }
+    else { this.lenguajes = true; this.temas = false; }
   }
   public animales: string[] = ["Caballo", "Cebra", "Chancho",
     "Elefante", "Gallina", "Gallo",
@@ -28,7 +32,7 @@ export class AnimalesPage implements OnInit {
     "Tucan", "Vaca", "Zorro"];
 
   constructor(private router: Router) { }
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.seleccionarIdiomaLatino();
     setTimeout(() => {
 
@@ -41,7 +45,7 @@ export class AnimalesPage implements OnInit {
   }
   ngOnInit() {
     setTimeout(() => {
-      
+
       let flagArg = document.getElementById('flagArg');
       flagArg.setAttribute('class', "imagen-Icon flag flag-active");//setear bandera en active.
     }, 200);
