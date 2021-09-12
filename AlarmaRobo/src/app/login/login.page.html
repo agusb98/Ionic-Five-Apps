@@ -1,67 +1,47 @@
-<ion-content class="background-image centrado">
+<ion-content>
+    <img src="./assets/images/background-login.png" />
+    <div class="container">
+        <ion-card>
+            <ion-card-content>
+                <ion-input type="email" placeholder="Correo.." [(ngModel)]="user.email" name="email" required>
+                </ion-input>
+            </ion-card-content>
+            <ion-card-content id="password">
+                <ion-input type="password" placeholder="Contraseña.." [(ngModel)]="user.password" name="password"
+                    required>
+                </ion-input>
+            </ion-card-content>
+        </ion-card>
 
-  <ion-header class="centrado">
-    <img id="imgLeft" src="../../assets/images/backgroundKeyLeft.jpg" />
-    <img id="imgRight" src="../../assets/images/backgroundKeyRigth.jpg" />
-  </ion-header>
-
-  <ion-card>
-    <ion-card-header class="centrado">
-      <ion-card-title>
-        <h1>Iniciar Sesión</h1>
-      </ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content card-transparent>
-      <form class="centrado">
-        <ion-item color="none">
-          <ion-input
-            class="centrado"
-            type="email"
-            placeholder="Ingrese su correo"
-            [(ngModel)]="user.email"
-            name="email"
-            required
-          >
-          </ion-input>
-        </ion-item>
-        <ion-item color="none">
-          <ion-input
-            class="centrado"
-            type="password"
-            placeholder="Ingrese su contraseña"
-            [(ngModel)]="user.password"
-            name="password"
-            required
-          ></ion-input> </ion-item
-        ><br />
-        <ion-button
-          ion-button
-          expand="full"
-          shape="round"
-          type="submit"
-          (click)="onLogin()"
-          block
-          >Ingresar</ion-button
-        >
-        <ion-button
-          ion-button
-          expand="full"
-          shape="round"
-          type="submit"
-          (click)="onRegister()"
-          block
-          >Registrar</ion-button
-        >
-      </form>
-      <ion-item id="divUsuarios" class="centrado" color="none" lines="none">
-        <ion-icon
-          class="iconUser"
-          name="key-outline"
-          *ngFor="let usuario of listaUsuarios"
-          (click)="seleccionarUsuario(usuario)"
-        ></ion-icon>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+        <div class="container-btn">
+            <ion-button [disabled]="!this.correctData()" expand="full" shape="round" type="submit" (click)="onLogin()"
+                block>Ingresar
+            </ion-button>
+        </div>
+    </div>
 </ion-content>
+
+<ion-footer>
+    <div class="register">
+        <div class="p-register">
+            <p id="p-footer">¿No tienes cuenta?</p>
+        </div>
+        <div class="btn-register">
+            <ion-button [disabled]="!this.correctData()" id="btn-register" expand="full" shape="round" type="submit"
+                (click)="onRegister()" block>
+                Registrarse
+            </ion-button>
+        </div>
+
+        <ion-fab vertical="center" horizontal="end" slot="fixed">
+            <ion-fab-button>
+                <ion-icon name="person-circle-sharp"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="top">
+                <ion-fab-button (click)="this.quickLog(user)" middle *ngFor="let user of users">
+                    <p id="p-perfil">{{user.perfil}}</p>
+                </ion-fab-button>
+            </ion-fab-list>
+        </ion-fab>
+    </div>
+</ion-footer>

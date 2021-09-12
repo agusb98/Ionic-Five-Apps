@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import {SpinnerComponent } from 'src/app/components/spinner/spinner.component'
 
 import { HomePage } from './home.page';
+import { Flashlight } from '@ionic-native/flashlight/ngx';
+import { DeviceMotion } from '@ionic-native/device-motion/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +22,12 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage,SpinnerComponent],
+  declarations: [HomePage],
+  providers:[
+    ScreenOrientation,
+    Flashlight,
+    DeviceMotion,
+    Vibration
+  ]
 })
 export class HomePageModule {}

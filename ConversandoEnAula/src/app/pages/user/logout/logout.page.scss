@@ -1,32 +1,3 @@
-.center-span {
-  display: block;
-  text-align: center;
-}
-
-.icon {
-  max-width: 32vh;
-  display: block;
-  margin: 0 auto;
-}
-
-ion-input,
-ion-item {
-  --background: transparent;
-}
-
-ion-content{
-  animation-duration: 5s;
-  animation-name: fadeIn;
-}
-
-.field-button{
-  position: fixed;
-  top: 50%;
-  left: 8%;
-}
-
-#buttonLogin{
-  position: fixed;
-  top: 80%;
-  left: 32%;
+ion-card-content{
+  
 }

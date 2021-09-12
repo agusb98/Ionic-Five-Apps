@@ -1,14 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <h1 class="centrado" style="color: white;">
-    SPINNER
-  </h1>
-
+<ion-content>
+  <img (click)="onImg()" id="img" src='./assets/images/powerOn.png' />
+  <p id="title" *ngIf="this.showToUnlock">Confirmar Identidad</p>
+  <ion-card *ngIf="this.showToUnlock">
+    <ion-card-content>
+      <div class="segurity">
+        <ion-input class="centrado" type="password" [(ngModel)]="this.password" placeholder="Ingrese su contraseña" name="password" required>
+        </ion-input>
+        <ion-button [disabled]='this.password.length < 6' (click)="onUnlock()" block>Desbloquear</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+  <div class="logout">
+    <div class="p-logout">
+      <p id="p-footer">¿Cerrar Sesión?</p>
+    </div>
+    <div class="btn-logout">
+      <ion-button [disabled]="!this.status" id="btn-logout" expand="full" shape="round" type="submit" (click)="onLogout()" block>Cerrar
+      </ion-button>
+    </div>
+  </div>
+</ion-footer>

@@ -8,7 +8,7 @@ const redirectUnauthorizedToLogin = () =>
 
 //  Automatically log in users
 const redirectLoggedInToHome = () =>
-  redirectLoggedInTo(['home']);
+  redirectLoggedInTo(['room']);
   
 const routes: Routes = [
   { path: '', redirectTo: 'splash', pathMatch: 'full' },
@@ -21,7 +21,8 @@ const routes: Routes = [
   {
     path: 'room',
     loadChildren: () => import('./pages/room/room.module').then(m => m.RoomPageModule)
-  },
+  }
+
 ];
 
 @NgModule({

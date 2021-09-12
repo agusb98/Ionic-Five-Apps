@@ -1,23 +1,14 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Cerrar Sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-img src="assets/img/icon.png"></ion-img>
+  
+  <ion-card-content>
+    <p>¿Seguro desea cerrar sesión?</p>
+    <ion-button (click)="onLogout()" shape="round" type="submit" fill="solid" class="sign-btn">
+      Cerrar</ion-button>
+  </ion-card-content>
 
-<ion-content [fullscreen]="true">
-  <form>
-    <img class="img-logout" src="/assets/img/logout.png" alt="" />
-    <span class="center-span"> ¿Seguro desea salir?</span>
-    <div class="field-button">
-      <a class="sns-btn sns-btn--button-class" id="buttonLogin">
-        <ion-button
-          type="submit"
-          color="none"
-          (click)="onLogOut()"
-          expand="block"
-          >Salir
-        </ion-button>
-      </a>
-    </div>
-  </form>
 </ion-content>
+
+<ion-footer>
+  <p>Mi App</p>
+</ion-footer>

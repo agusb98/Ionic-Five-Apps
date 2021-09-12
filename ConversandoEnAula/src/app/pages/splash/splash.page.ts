@@ -13,6 +13,6 @@ export class SplashPage {
   ) {
     setTimeout(() => {
       this.router.navigateByUrl('user/login');
-    }, 5000);
+    }, 6000);
   }
 }

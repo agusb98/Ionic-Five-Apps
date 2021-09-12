@@ -1,106 +1,46 @@
-ion-toolbar,
-ion-header {
-  min-height: 223px;
-
-  img {
-    min-height: 223px;
-    max-height: 223px;
-  }
-  #imgLeft {
-    animation-name: leftInImg;
-    animation-delay: 7.5s;
-    animation-duration: 3s;
-  }
-  #imgRight {
-    animation-name: rightInImg;
-    animation-delay: 7.5s;
-    animation-duration: 3s;
-  }
-}
-ion-content {
-  ion-card {
-    background: transparent;
-    ion-card-content {
-      margin-bottom: 0;
-    }
-    * {
-      color: white;
-    }
-  }
-}
-@media (max-height: 400px) {
-  ion-header {
-    display: none;
-  }
-}
-#divUsuarios {
-  animation-name: rightIn;
-  animation-duration: 3s;
-  .iconUser {
-    font-size: 600%;
-  }
-  .iconUser:hover {
-    animation-name: rotarLlave;
-    animation-duration: 10s;
-  }
-}
-//ANIMACIONES
-@keyframes rotarLlave {
-  from {
-    color: red;
-    transform: rotateZ(0deg);
-  }
-  30% {
-    transform: rotateY(180deg) translate(0px, 0px); //skew(-3deg, 20deg);
-  }
-  80% {
-    color: red;
-  }
-  to {
-    color: white;
-  }
-}
-@keyframes rightIn {
-  from {
-    margin-left: 80%;
-  }
-  to {
-    margin-left: 0%;
-  }
+p {
+  text-align: center;
 }
 
-@keyframes rightInImg {
-  from {
-    position: absolute;
-    min-height: 223px;
-    left: 120%;
-  }
-  to {
-    position: absolute;
-    min-height: 223px;
-    left: 48.5%;
-  }
-}
-@keyframes leftInImg {
-  from {
-    position: absolute;
-    min-height: 223px;
-    left: -50%;
-  }
-  to {
-    position: absolute;
-    min-height: 223px;
-    left: 0%;
-  }
+#img-logout {
+  transform: scaleX(-1);
 }
 
-@keyframes zoom {
-  from {
-    max-width: 0%;
-    max-height: 0%;
+.container{
+  position: relative;
+}
+
+ion-card-content {
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+}
+
+ion-button {
+  width: 50%;
+}
+
+.slide-bottom {
+  -webkit-animation: slide-bottom 2s linear both;
+  animation: slide-bottom 2s linear both;
+}
+@-webkit-keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
-  to {
-    max-width: 100%;
-    max-height: 30%;
+  100% {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
   }
 }

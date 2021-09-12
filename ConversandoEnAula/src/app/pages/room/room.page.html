@@ -1,26 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Chat de Cursos</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" style="text-align: center">
-  <ion-card class="button class-a" (click)="classSelected('4A')">
-    <p>PPS-4A</p>
+  <ion-card class="room room-a" (click)="classSelected('4A')">
+    <p id="p-a">PPS-4A</p>
   </ion-card>
 
-  <ion-card class="button class-b" (click)="classSelected('4B')">
-    <p>PPS-4B</p>
+  <ion-card class="room room-b" (click)="classSelected('4B')">
+    <p id="p-b">PPS-4B</p>
   </ion-card>
-
-  <a class="sns-btn sns-btn--button-user btnLogout">
-    <ion-button
-      expand="block"
-      shape="round"
-      (click)="logout()"
-      color="none"
-    >
-      Cerrar Sesión
-    </ion-button>
-  </a>
 </ion-content>
+
+<ion-footer>
+  <p>¿Cerrar Sesión?</p>
+  <ion-button (click)="logout()" size="small" shape="round" type="submit" fill="solid" class="sign-btn">
+    Cerrar</ion-button>
+</ion-footer>

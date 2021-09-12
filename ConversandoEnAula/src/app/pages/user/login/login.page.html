@@ -1,85 +1,57 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Iniciar Sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-img src="assets/img/icon.png"></ion-img>
+  <ion-card>
+    <ion-card-content>
 
-<ion-content [fullscreen]="true" style="text-align: center">
-  <form>
-    <ion-item lines="full">
-      <img class="icon" src="../../../../assets/img/login-splash.png" alt="" />
+      <form [formGroup]="form" (ngSubmit)="onLogin()">
+        <div class="wrapform">
+          <ion-item>
+            <ion-input type="text" name="email" formControlName="email" placeholder="Email">
+              <ion-icon name="mail-outline"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationUserMessage.email">
+              <div class="error_message"
+                *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email').touched)">
+                {{validation.message}}
+              </div>
+            </ng-container>
+          </div>
 
-      <ion-item id="divUsuarios" color="none" lines="none">
-        <ion-icon
-          class="iconUser"
-          name="logo-reddit"
-          *ngFor="let usuario of listaUsuarios"
-          (click)="seleccionarUsuario(usuario)"
-        ></ion-icon>
-      </ion-item>
+          <ion-item>
+            <ion-input type="password" name="password" formControlName="password" placeholder="**************">
+              <ion-icon name="lock-closed"></ion-icon>
+            </ion-input>
+          </ion-item>
 
-      <ion-label
-        position="floating"
-        style="
-          color: rgb(136, 9, 9);
-          text-align: center;
-          font-family: 'Brush Script MT', cursive;
-        "
-      >
-        Email <span class="text-danger">*</span></ion-label
-      >
-      <ion-input
-        class="centrado"
-        type="email"
-        placeholder="Ingrese su correo"
-        [(ngModel)]="user.email"
-        name="email"
-        required
-      >
-      </ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label
-        position="floating"
-        style="
-          color: rgb(136, 9, 9);
-          text-align: center;
-          font-family: 'Brush Script MT', cursive;
-        "
-      >
-        Contraseña <span class="text-danger">*</span></ion-label
-      >
-      <ion-input
-        class="centrado"
-        type="password"
-        placeholder="Ingrese su Contraseña"
-        [(ngModel)]="user.password"
-        name="password"
-        required
-      >
-      </ion-input>
-    </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationUserMessage.password">
+              <div class="error_message"
+                *ngIf="form.get('password').hasError(validation.type) && (form.get('password').dirty || form.get('password').touched)">
+                {{validation.message}}
+              </div>
+            </ng-container>
+          </div>
 
-    <div class="field-button">
-      <a class="sns-btn sns-btn--button-class">
-        <ion-button
-          type="submit"
-          (click)="onLogin()"
-          expand="block"
-          color="none"
-          >Ingresar</ion-button
-        >
-      </a>
-      <a class="sns-btn sns-btn--button-user">
-        <ion-button
-          id="buttonRegister"
-          type="submit"
-          (click)="onRegister()"
-          expand="block"
-          color="none"
-          >Registrarse</ion-button
-        >
-      </a>
-    </div>
-  </form>
+        </div>
+
+        <ion-button shape="round" type="submit" fill="solid" class="sign-btn" [disabled]="!form.valid">
+          Ingresar</ion-button>
+
+        <ion-item class="divUsuarios" color="none" lines="none">
+          <ion-icon id="icon-user" name="logo-reddit" *ngFor="let usuario of listaUsuarios" (click)="seleccionarUsuario(usuario)">
+          </ion-icon>
+        </ion-item>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+  <p>¿No tienes una cuenta?</p>
+  <ion-button (click)="onRegister()" size="small" shape="round" type="submit" fill="solid" class="sign-btn"
+    [disabled]="!form.valid">
+    Regístrate</ion-button>
+</ion-footer>

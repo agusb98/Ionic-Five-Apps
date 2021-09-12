@@ -20,4 +20,8 @@ export class LogoutPage implements OnInit {
     this.router.navigate(['login'])
   }
 
+  async onHome() {
+    this.router.navigate(['home'])
+  }
+
 }

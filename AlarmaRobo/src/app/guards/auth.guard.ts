@@ -1,66 +1,34 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { Injectable, ResolvedReflectiveFactory } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service'
-import { ToastController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
+
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router,
-    private toast: ToastController) {
 
-  }
+    constructor(
+        private auth: AuthService,
+        private router: Router
+    ) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.isLogged) {
-      return true;
+    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+        Observable<boolean> | Promise<boolean> | boolean {
+
+        return this.authorize();
     }
-    this.presentToast("", 3000, "danger", "Acceso restringido");
-    this.router.navigateByUrl("/login");
-  }
 
-  async presentToast(mensaje: string, duracion: number, color: string, titulo: string, boton?: boolean,
-    tituloBotonUno?: string, tituloBotonDos?: string, urlUno?: string, urlDos?: string) {
-    let toast;
-    if (boton) {
-      toast = await this.toast.create({
-        message: mensaje,
-        duration: duracion,
-        color: color,
-        header: titulo,
-        buttons: [
-          {
-            side: "end",
-            text: tituloBotonUno,
-            handler: () => {
-              this.router.navigateByUrl("/" + urlUno);
-            }
-          },
-          {
-            side: "end",
-            text: tituloBotonDos,
-            handler: () => {
-              this.router.navigateByUrl("/" + urlDos);
-            }
-          }
-        ]
-
-      });
+    authorize(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.auth.afAuth.user.subscribe(data => {
+                if (data) { resolve(true); }
+                else {
+                    this.router.navigate(['./login']);
+                    resolve(false);
+                }
+            })
+        });
     }
-    else {
-      toast = await this.toast.create({
-        message: mensaje,
-        duration: duracion,
-        color: color,
-        header: titulo
-      });
-    }
-    toast.present();
-  }
-
-
 }

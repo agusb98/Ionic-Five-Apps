@@ -25,71 +25,73 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-$primary-color: rgb(146, 224, 238);
-$secondary-color: rgb(136, 9, 9);
-
-ion-toolbar {
-  --background: $primary-color;
+@font-face {
+    font-family: "Bitstream Vera Serif Bold";
+    src: url("./assets/fonts/FjallaOne-Regular.ttf");
 }
 
-ion-content {
-	--background: rgb(238,174,202);
-	--background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(90,134,186,1) 100%);
+body {
+    --ion-background-color: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(90, 134, 186, 1) 100%) !important;
 }
 
-/* BUTTONS */
-
-.field-button {
-	display: flex;
-	width: 330px;
-	justify-content: space-around;
-  text-align: center;
+p,
+ion-button,
+ion-item,
+ion-input {
+    font-family: "FjallaOne", regular !important;
+    color: rgb(77, 0, 70);
+    font-weight: bolder;
 }
 
-.sns-btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 8rem;
-	width: 8rem;
-	border-radius: 50%;
-	border: none;
-	transition-duration: .5s;
-	transform: rotateX(45deg);
-	box-shadow: 0px 10px 5px rgb(0, 0, 0);
-	cursor: pointer;
-	&--button-class {
-		background-color: #3b5998;
-	}
-  &--button-user {
-		background-color: #51983b;
-	}
-	&:hover {
-		transform: scale(1.2);
-		box-shadow: none;
-	}
-	&__icon {
-		font-size: 33px;
-		letter-spacing: 0.1em;
-		color: #fff;
-	}
+ion-content,
+ion-footer {
+    text-align: center;
 }
 
-p, h1, a, ion-title, span{
-  color: $primary-color;
-  text-shadow: 0 0 1rem whitesmoke;
-  font-family: 'Brush Script MT', cursive;
-  text-align: center;
+ion-card,
+ion-item,
+ion-footer {
+    --background: transparent;
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+ion-button:hover {
+    animation-name: rotate;
+    animation-duration: 1s;
 }
 
-@keyframes jello-vertical{0%{transform:scale3d(1,1,1)}30%{transform:scale3d(.75,1.25,1)}40%{transform:scale3d(1.25,.75,1)}50%{transform:scale3d(.85,1.15,1)}65%{transform:scale3d(1.05,.95,1)}75%{transform:scale3d(.95,1.05,1)}100%{transform:scale3d(1,1,1)}}
+ion-footer {
+    display: flex;
+    justify-content: space-between;
 
-ion-item {
-  --background: transparent;
+    p,
+    ion-button {
+        margin: 0.25rem;
+    }
 }
 
+@keyframes rotate {
+    from {
+        transform: rotateZ(0deg);
+    }
+    50% {
+        transform: rotateY(180deg) translate(0px, 0px); //skew(-3deg, 20deg);
+    }
+}
+
+@keyframes rightIn {
+    from {
+        margin-left: 80%;
+    }
+    to {
+        margin-left: 0%;
+    }
+}
+
+@keyframes leftIn {
+    from {
+        margin-right: 80%;
+    }
+    to {
+        margin-right: 0%;
+    }
+}

@@ -8,7 +8,7 @@ const redirectUnauthorizedToLogin = () =>
 
 //  Automatically log in users
 const redirectLoggedInToHome = () =>
-  redirectLoggedInTo(['home']);
+  redirectLoggedInTo(['room']);
 
 const routes: Routes = [
   { path: '', redirectTo: 'user/login' },

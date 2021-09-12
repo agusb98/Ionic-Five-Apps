@@ -14,7 +14,7 @@ export class LogoutPage {
     private router: Router,
   ) { }
 
-  async onLogOut() {
+  async onLogout() {
     try {
       await this.authService.logout();
       localStorage.setItem('email', ''); //Save user data in the local storage
