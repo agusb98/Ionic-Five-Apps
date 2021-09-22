@@ -1,0 +1,13 @@
+.center {
+    width: 40%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(0.2rem);
+    height: 45rem;
+}

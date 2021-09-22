@@ -1,0 +1,67 @@
+<ion-content>
+    <form [formGroup]="form" (ngSubmit)="onLogin()">
+
+        <ion-card>
+            <ion-card-content>
+                <div>
+                    <ion-item>
+                        <ion-input type="text" name="email" formControlName="email" placeholder="Correo">
+                            <ion-icon id="icon-data" name="mail-outline"></ion-icon>
+                        </ion-input>
+                    </ion-item>
+                    <div>
+                        <ng-container *ngFor="let validation of validationUserMessage.email">
+                            <div class="error_message"
+                                *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email').touched)">
+                                <p>{{validation.message}}</p>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <ion-item>
+                        <ion-input type="password" name="password" formControlName="password"
+                            placeholder="**************">
+                            <ion-icon id="icon-data" name="lock-closed"></ion-icon>
+                        </ion-input>
+                    </ion-item>
+
+                    <div>
+                        <ng-container *ngFor="let validation of validationUserMessage.password">
+                            <div class="error_message"
+                                *ngIf="form.get('password').hasError(validation.type) && (form.get('password').dirty || form.get('password').touched)">
+                                <p>{{validation.message}}</p>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                </div>
+
+                <ion-fab id="fab-log">
+                    <ion-fab-button [disabled]="!form.valid" (click)="this.onLogin()">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </ion-fab-button>
+                </ion-fab>
+
+            </ion-card-content>
+        </ion-card>
+
+        <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+            <ion-fab-button [disabled]="!form.valid" (click)="this.onRegister()">
+                <ion-icon name="person-add-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button>
+                <ion-icon name="people-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="top" horizontal="end">
+                <!-- if lang == langSelected:::: color and disabled -->
+                <ion-fab-button (click)="this.seleccionarUsuario(user)" middle *ngFor="let user of listaUsuarios">
+                    <ion-icon name="logo-reddit"></ion-icon>
+                </ion-fab-button>
+            </ion-fab-list>
+        </ion-fab>
+    </form>
+
+</ion-content>

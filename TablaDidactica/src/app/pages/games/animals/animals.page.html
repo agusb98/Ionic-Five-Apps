@@ -1,0 +1,4 @@
+<ion-content>
+  <img id="{{ animal.name }}" *ngFor="let animal of this.animals" (click)="clickAnimal(animal)" src="{{ animal.img }}">
+  <app-footer></app-footer>
+</ion-content>

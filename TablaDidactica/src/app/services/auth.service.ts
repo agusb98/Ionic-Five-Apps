@@ -1,44 +1,60 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from './../shared/user.class';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ToastrService } from 'ngx-toastr';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   public isLogged: any = false;
-  constructor(public afAuth: AngularFireAuth) {
+
+  constructor(
+    public afAuth: AngularFireAuth,
+    private toastrService: ToastrService
+  ) {
     afAuth.authState.subscribe(user => (this.isLogged = user));
   }
-  
+
   //LOGIN
-  async OnLogin(user: User) {
+  async login(email: string, password: string) {
     try {
-      return await this.afAuth.auth.signInWithEmailAndPassword(
-        user.email,
-        user.password
-      );
-    } catch (error) {
-      console.log('ERROR al logear ', error);
+      const user = await this.afAuth.signInWithEmailAndPassword(email, password);
+      //this.vibration.vibrate([1000, 500, 1000]);
+      this.toastrService.success('Ingreso con Exito', 'Iniciar Sesión');
+      return user;
+    }
+    catch (error) {
+      //this.vibration.vibrate([1000]);
+      this.toastrService.error('Email/Contraseña Incorrecto', 'Iniciar Sesión');
     }
   }
 
   //REGISTER
-  async OnRegister(user: User) {
+  async register(email: string, password: string) {
     try {
-      return await this.afAuth.auth.createUserWithEmailAndPassword(user.email,
-        user.password
-      );
-    } catch (error) {
-      console.log('ERROR al registrar usuario ', error);
+      const user = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      //this.vibration.vibrate([1000, 500, 1000]);
+      this.toastrService.success('Bienvenido!', 'Registro de Usuario');
+
+      return user;
+    }
+    catch (error) {
+      //this.vibration.vibrate([1000]);
+      this.toastrService.error(error.message, 'Registro de Usuario');
     }
   }
 
   //LOGOUT
-  async OnLogout() {
+  async signout() {
     try {
-      return await this.afAuth.auth.signOut();
-    } catch (error) {
-      console.log('ERROR al quitar el usuario ', error);
+      await this.afAuth.signOut();
+      //this.vibration.vibrate([1000, 500, 1000]);
+      this.toastrService.success('Sesión Cerrada con Exito', 'Salir');
+    }
+    catch (error) {
+      //this.vibration.vibrate([1000]);
+      this.toastrService.error(error.message, 'Cerrar Sesión');
     }
   }
 }

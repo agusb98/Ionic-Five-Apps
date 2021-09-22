@@ -1,0 +1,9 @@
+<ion-content>
+  <img *ngFor="let link of links" src='{{ link.img }}' (click)="redirectTo(link.name)">
+
+  <ion-fab (click)="logout()" vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="log-out"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

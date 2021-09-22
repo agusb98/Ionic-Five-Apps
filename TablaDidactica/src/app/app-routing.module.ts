@@ -1,45 +1,36 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './components/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
-    path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    path: '', redirectTo: 'splash', pathMatch: 'full'
+  },
+  { path: 'splash', loadChildren: () => import('./pages/splash/splash.module').then(m => m.SplashPageModule) },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
   },
   {
-    path: 'register', loadChildren: './register/register.module#RegisterPageModule'
+    path: 'animals',
+    loadChildren: () => import('./pages/games/animals/animals.module').then(m => m.AnimalsPageModule), canActivate: [AuthGuard]
   },
   {
-    path: 'login', loadChildren: './login/login.module#LoginPageModule'
+    path: 'numbers',
+    loadChildren: () => import('./pages/games/numbers/numbers.module').then(m => m.NumbersPageModule), canActivate: [AuthGuard]
   },
   {
-    path: 'admin', loadChildren: './admin/admin.module#AdminPageModule'
-  },
-  { path: 'spiner', loadChildren: './spiner/spiner.module#SpinerPageModule' },
-  {
-    path: 'animales', loadChildren: './animales/animales.module#AnimalesPageModule'
+    path: 'colors',
+    loadChildren: () => import('./pages/games/colors/colors.module').then(m => m.ColorsPageModule), canActivate: [AuthGuard]
   },
   {
-    path: 'numeros', loadChildren: './numeros/numeros.module#NumerosPageModule'
-  },
-  {
-    path: 'colores', loadChildren: './colores/colores.module#ColoresPageModule'
-  },
-  {
-    path: 'seleccion-de-juego', loadChildren: './seleccion-de-juego/seleccion-de-juego.module#SeleccionDeJuegoPageModule'
-  },
-  {
-    path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule'
-  },
-
-
-
+    path: 'login',
+    loadChildren: () => import('./pages/user/login/login.module').then(m => m.LoginPageModule)
+  }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

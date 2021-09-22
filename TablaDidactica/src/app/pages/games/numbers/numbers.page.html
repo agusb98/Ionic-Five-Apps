@@ -1,0 +1,5 @@
+<ion-content>
+    <img id="{{ num.name }}" *ngFor="let num of this.numbers" (click)="clickNum(num)" src="{{ num.img }}">
+
+  <app-footer></app-footer>
+</ion-content>

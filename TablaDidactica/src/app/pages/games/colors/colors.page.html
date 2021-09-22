@@ -1,0 +1,4 @@
+<ion-content>
+  <img id="{{ col.name }}" *ngFor="let col of this.colors" (click)="clickCol(col)" src="{{ col.img }}">
+  <app-footer></app-footer>
+</ion-content>
