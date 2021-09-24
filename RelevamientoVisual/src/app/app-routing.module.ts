@@ -1,38 +1,25 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
-import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
-
-//  Send unauthorized users to login
-const redirectUnauthorizedToLogin = () =>
-  redirectUnauthorizedTo(['login']);
-
-//  Automatically log in users
-const redirectLoggedInToHome = () =>
-  redirectLoggedInTo(['home']);
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule),
-    ...canActivate(redirectLoggedInToHome)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+  },  {
+    path: 'nice',
+    loadChildren: () => import('./pages/things/nice/nice.module').then( m => m.NicePageModule)
   },
   {
-    path: 'logout',
-    loadChildren: () => import('./logout/logout.module').then(m => m.LogoutPageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
-  },
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
-  },
+    path: 'ugly',
+    loadChildren: () => import('./pages/things/ugly/ugly.module').then( m => m.UglyPageModule)
+  }
+
 ];
 
 @NgModule({

@@ -1,14 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Ingresar Sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-grid class="background-image">
 </ion-grid>
 <ion-content>
   <ion-card id="cardLogin">
     </ion-card>
+    
     <ion-card>
       <ion-card-content id="contenedorAccesoRapido">
         <ion-grid>
@@ -16,12 +11,13 @@
             <div id="divScaner" *ngIf="escanear"></div>
             <ion-col *ngFor="let usuario of usuarios">
               <img class="iconUserLogin animacionSeleccion"  (click)="cargarUsuarioEnInput(usuario)"
-                src="../../assets/images/admin.png" alt="imagen admin">
+                src="./assets/images/admin.png" alt="imagen admin">
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>
+
     <ion-card-content>
       <ion-list class="listaInputs">
         <ion-item class="inputLogin">

@@ -1,8 +1,3 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Recargas</ion-title>
-  </ion-toolbar>
-</ion-header>
 <ion-content class="centrado">
   <h4 (click)="scanCode()">ESCANEAR QR</h4>
   <ion-item class="centrado" size="6">
@@ -12,6 +7,7 @@
   <p *ngIf="creditoActual==0 || creditoActual==-1" id="creditoNulo">${{creditoActual}}</p>
   <p *ngIf="creditoActual>0 && creditoActual<=50" id="creditoBajo">${{creditoActual}}</p>
   <p *ngIf="creditoActual>50" id="creditoAlto">${{creditoActual}}</p>
-  <ion-button id="btnScan" color="light" expand="full" fill="outline" (click)="reiniciarCreditos()">Reiniciar Creditos</ion-button>
+  <ion-button id="btnScan" color="light" expand="full" fill="outline" (click)="reiniciarCreditos()">Reiniciar Creditos
+  </ion-button>
   <ion-button id="btnLogout" color="light" expand="full" fill="outline" (click)="onLogout()">Cerrar Sesión</ion-button>
 </ion-content>

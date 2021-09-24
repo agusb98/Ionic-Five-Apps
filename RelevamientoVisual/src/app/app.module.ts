@@ -18,15 +18,25 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx';
-import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule,
+  imports: [
+    BrowserModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      progressBar: true
+    }),
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [
     StatusBar,
@@ -35,7 +45,6 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
     WebView,
     AngularFirestore,
     AngularFireStorage,
-    AngularFireAuthGuard,
     DeviceMotion,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }
 
