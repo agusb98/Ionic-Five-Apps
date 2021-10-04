@@ -1,26 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
-
-//  Send unauthorized users to login
-const redirectUnauthorizedToLogin = () =>
-  redirectUnauthorizedTo(['user/login']);
-
-//  Automatically log in users
-const redirectLoggedInToHome = () =>
-  redirectLoggedInTo(['room']);
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'user/login' },
   {
     path: 'login',
     loadChildren: () => import('../../pages/user/login/login.module').then(m => m.LoginPageModule),
-    ...canActivate(redirectLoggedInToHome)
   },
   {
     path: 'logout',
-    loadChildren: () => import('../../pages/user/logout/logout.module').then(m => m.LogoutPageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
+    loadChildren: () => import('../../pages/user/logout/logout.module').then(m => m.LogoutPageModule), canActivate: [AuthGuard]
   },
 ];
 

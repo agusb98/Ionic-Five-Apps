@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recargas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h4 (click)="scanCode()">CLICK PARA ESCANEAR QR</h4>
+  <ion-item size="6">
+    <img src="./assets/img/bardcode.gif" (click)="scanCode()" alt="codigo QR">
+  </ion-item>
+
+  <p>Crédito Actual</p>
+  <p id="acum">${{this.getAcum()}}</p>
+
+  <ion-button id="btn" fill="solid" (click)="retry()">Reiniciar Creditos</ion-button>
+
+  <ion-fab (click)="logout()" vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="log-out"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

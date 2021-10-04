@@ -10,8 +10,7 @@ export class RoomPage implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   logout() {
     this.router.navigate(['user/logout']);

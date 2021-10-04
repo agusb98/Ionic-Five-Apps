@@ -12,9 +12,7 @@ export class AuthService {
   constructor(
     public afAuth: AngularFireAuth,
     private toastrService: ToastrService
-  ) {
-    afAuth.authState.subscribe(user => (this.isLogged = user));
-  }
+  ) { afAuth.authState.subscribe(user => (this.isLogged = user)); }
 
   //LOGIN
   async login(email: string, password: string) {

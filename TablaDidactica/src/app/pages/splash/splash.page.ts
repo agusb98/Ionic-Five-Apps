@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
   templateUrl: './splash.page.html',
   styleUrls: ['./splash.page.scss'],
 })
+
 export class SplashPage {
 
   constructor(public router: Router) {
     setTimeout(() => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('home');
     }, 6000);
   }
 }

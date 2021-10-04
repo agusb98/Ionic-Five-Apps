@@ -12,6 +12,9 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
 })
 export class HomePage implements OnInit {
 
+  possNow = '';
+  possBefore = '';
+
   password: string;
   status: boolean;
   showToUnlock: boolean;
@@ -32,22 +35,20 @@ export class HomePage implements OnInit {
     this.status = true;
     this.showToUnlock = false;
     this.errorCount = 0;
+    this.possNow = 'now';
+    this.possBefore = 'before';
 
     let doc = document.getElementById('img');
     doc.style.filter = 'none';
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
   }
 
   onImg() {
-    if (this.status) {
-      this.onActive();
-    }
-    else {
-      this.showToUnlock = true;
-    }
+    if (this.status) { this.onActive(); }
+    else { this.showToUnlock = true; }
   }
 
   onActive() {
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
     this.status = false;
 
     let doc = document.getElementById('img');
@@ -78,20 +79,57 @@ export class HomePage implements OnInit {
   activeAceleration() {
     this.subscription = this.deviceMotion.watchAcceleration({ frequency: 300 }).subscribe((acceleration: DeviceMotionAccelerationData) => {
       if (acceleration.x > 5) {
-        this.playAudio("/assets/audios/estaHurtando.wav");
+        //Izquierda
+        this.possNow = 'izquierda';
+        this.activarSoloAudioIzquierda();
       }
       else if (acceleration.x < -5) {
-        this.playAudio("/assets/audios/esMio.wav");
+        //derecha
+        this.possNow = 'derecha';
+        this.activarSoloAudioDerecha();
       }
       else if (acceleration.y >= 9) {
-        this.playAudio("/assets/audios/alarmaDos.wav");
-        this.activeFlash(5);
+        //encender flash por 5 segundos y sonido
+        this.possNow = 'arriba';
+        if (this.possNow != this.possBefore) {
+          this.playAudio('./assets/audios/alarmaDos.wav');
+          this.possBefore = "arriba";
+        }
+        this.activarSoloFlashConAudio();
       }
       else if (acceleration.z >= 9 && (acceleration.y >= -1 && acceleration.y <= 1) && (acceleration.x >= -1 && acceleration.x <= 1)) {
-        this.playAudio("/assets/audios/vibrando.wav");
-        this.activeVib(5);
+        //acostado vibrar por 5 segundos y sonido
+        this.possNow = 'plano';
+        this.activarSoloAudioConVibrador();
       }
     });
+  }
+
+  activarSoloAudioIzquierda() {
+    if (this.possNow != this.possBefore) {
+      this.possBefore = "izquierda";
+      this.playAudio('./assets/audios/estaHurtando.wav');
+    }
+  }
+  
+  activarSoloAudioDerecha() {
+    if (this.possNow != this.possBefore) {
+      this.possBefore = "derecha";
+      this.playAudio('./assets/audios/esMio.wav');
+    }
+  }
+
+  activarSoloAudioConVibrador() {
+    if (this.possNow != this.possBefore) {
+      this.possBefore = "plano";
+      this.playAudio('./assets/audios/vibrando.wav');
+      this.vibration.vibrate(5000);
+    }
+  }
+
+  activarSoloFlashConAudio() {
+    this.flashlight.switchOn();
+    setTimeout(() => { this.flashlight.switchOff(); }, 5000);
   }
 
   activeFlash(seconds: number) {

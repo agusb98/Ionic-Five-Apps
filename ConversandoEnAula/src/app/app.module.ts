@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
       preventDuplicates: true,
     })
   ],
-  providers: [AngularFireAuthGuard, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [Vibration , AngularFireAuthGuard, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

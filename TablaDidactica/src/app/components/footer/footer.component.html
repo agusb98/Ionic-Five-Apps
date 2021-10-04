@@ -4,7 +4,7 @@
   </ion-fab-button>
   <ion-fab-list side="top">
     <!-- if lang == langSelected:::: color and disabled -->
-    <ion-fab-button (click)="this.clickGame(game.name)" middle *ngFor="let game of games">
+    <ion-fab-button (click)="this.clickGame(game.name)" middle *ngFor="let game of games" size="xl">
       <img id="img-game" src="{{game.img}}" alt="">
     </ion-fab-button>
   </ion-fab-list>

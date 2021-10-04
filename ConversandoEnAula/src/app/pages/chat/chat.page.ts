@@ -8,6 +8,7 @@ import { ChatService } from 'src/app/services/chat.service';
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
 })
+
 export class ChatPage implements OnInit {
 
   className: string = localStorage.getItem('class');
@@ -19,7 +20,7 @@ export class ChatPage implements OnInit {
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
-    this.chat = this.chatService.getAllByClass(this.className).valueChanges();
+    this.chat = this.chatService.getAllByClass(this.className);
   }
 
   send() {
@@ -31,7 +32,7 @@ export class ChatPage implements OnInit {
     this.message.time = date.getHours() + ':' + date.getMinutes();
 
     if (this.chatService.checkMessage(this.message)) {
-      if (this.chatService.createOne(this.message, 'chat-' + this.className)) {
+      if (this.chatService.createOne(this.message)) {
         this.clear();
       }
     }

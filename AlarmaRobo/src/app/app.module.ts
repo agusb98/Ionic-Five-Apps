@@ -15,7 +15,8 @@ import { environment } from 'src/environments/environment';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
     SpinnerComponent
   ],
   entryComponents: [],

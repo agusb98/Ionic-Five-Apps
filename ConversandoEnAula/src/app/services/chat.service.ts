@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Message } from '../shared/message';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -9,11 +10,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ChatService {
 
-  constructor(private bd: AngularFirestore, private toastr: ToastrService) { }
+  pathOfCollection = 'conversando';
+  referenceToCollection: AngularFirestoreCollection;
 
-  public async createOne(message: Message, pathOfCollection: string) {
+  constructor(private bd: AngularFirestore, private toastr: ToastrService) {
+    this.referenceToCollection = this.bd.collection<Message>(this.pathOfCollection, ref => ref.orderBy('time', 'asc'));
+  }
+
+  public async createOne(message: Message) {
     try {
-      const result = await this.bd.collection(pathOfCollection).add({ ...message });  //  llaves es objeto, 3 puntitos es dinamico
+      const result = await this.referenceToCollection.add({ ...message });  //  llaves es objeto, 3 puntitos es dinamico
       return result;
     }
     catch (error) { this.toastr.error('Problema al Enviar Mensaje', 'Estado del Mensaje'); }
@@ -28,17 +34,31 @@ export class ChatService {
     return true;
   }
 
+  getAll() {
+    try {
+      return this.referenceToCollection.snapshotChanges().pipe(
+        map(actions => actions.map(a => a.payload.doc.data() as Message))
+      );
+    }
+    catch (error) { this.toastr.error('Error at the moment to get turnos..', 'Data turnos'); }
+  }
+
   getAllByClass(className: string) {
     try {
       switch (className) {
         case '4A': {
-          return this.bd.collection<Message>('chat-4A', ref => ref.orderBy('time', 'asc'));
+          return this.getAll().pipe(
+            map(messages => messages.filter(
+              m => m.class.includes(className)))
+          );
         }
         case '4B': {
-          return this.bd.collection<Message>('chat-4B', ref => ref.orderBy('time', 'asc'));
-          break;
+          return this.getAll().pipe(
+            map(messages => messages.filter(
+              m => m.class.includes(className)))
+          );
         }
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 }

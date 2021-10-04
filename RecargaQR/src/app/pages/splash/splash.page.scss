@@ -1,0 +1,33 @@
+.container-img {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 50%;
+
+  img {
+    width: 70%;
+  }
+
+  #icon {
+    position: absolute;
+    top: 25%;
+    left: 24%;
+  }
+
+  #icon {
+    width: 50%;
+  }
+}
+
+p {
+  font-size: 2rem;
+}
+
+ion-footer {
+  text-align: center;
+}
+
+.fade-in{-webkit-animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) both}
+@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+
+

@@ -1,0 +1,102 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@font-face {
+    font-family: "Bangers";
+    src: url("./assets/fonts/Bangers-Regular.ttf");
+}
+
+body {
+    --ion-background-color: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background: repeating-linear-gradient(
+            45deg,
+            #7eb37a 0%,
+            rgb(135 211 133 / 60%) 35%,
+            transparent 35%,
+            transparent 10%
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            rgb(94 179 73 / 40%) 0%,
+            rgb(48 92 44 / 50%) 35%,
+            transparent 35%,
+            transparent 10%
+        );
+    background-color: rgba(38, 152, 34, 0.25);
+}
+
+p,
+h4,
+ion-title,
+ion-button,
+ion-item,
+ion-input,
+ion-icon {
+    font-family: Bangers, regular !important;
+    color: #3e3a3e;
+    font-weight: bolder;
+}
+
+ion-header,
+ion-content,
+ion-footer {
+    text-align: center;
+}
+
+ion-card,
+ion-item,
+ion-footer {
+    --background: transparent;
+}
+
+ion-button:hover, 
+ion-fab:hover {
+    animation-name: rotate;
+    -webkit-animation:jello-horizontal .9s both;animation:jello-horizontal .9s both;
+}
+
+ion-footer {
+    display: flex;
+    justify-content: space-between;
+
+    p,
+    ion-button {
+        margin: 0.25rem;
+    }
+}
+
+@-webkit-keyframes jello-horizontal{0%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}30%{-webkit-transform:scale3d(1.25,.75,1);transform:scale3d(1.25,.75,1)}40%{-webkit-transform:scale3d(.75,1.25,1);transform:scale3d(.75,1.25,1)}50%{-webkit-transform:scale3d(1.15,.85,1);transform:scale3d(1.15,.85,1)}65%{-webkit-transform:scale3d(.95,1.05,1);transform:scale3d(.95,1.05,1)}75%{-webkit-transform:scale3d(1.05,.95,1);transform:scale3d(1.05,.95,1)}100%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}@keyframes jello-horizontal{0%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}30%{-webkit-transform:scale3d(1.25,.75,1);transform:scale3d(1.25,.75,1)}40%{-webkit-transform:scale3d(.75,1.25,1);transform:scale3d(.75,1.25,1)}50%{-webkit-transform:scale3d(1.15,.85,1);transform:scale3d(1.15,.85,1)}65%{-webkit-transform:scale3d(.95,1.05,1);transform:scale3d(.95,1.05,1)}75%{-webkit-transform:scale3d(1.05,.95,1);transform:scale3d(1.05,.95,1)}100%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}
+
+.bounce-in-bck{-webkit-animation:bounce-in-bck 7s both;animation:bounce-in-bck 7s both}
+
+@-webkit-keyframes bounce-in-bck{0%{-webkit-transform:scale(7);transform:scale(7);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}38%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}55%{-webkit-transform:scale(1.5);transform:scale(1.5);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}72%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}81%{-webkit-transform:scale(1.24);transform:scale(1.24);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}89%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}95%{-webkit-transform:scale(1.04);transform:scale(1.04);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}100%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}@keyframes bounce-in-bck{0%{-webkit-transform:scale(7);transform:scale(7);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}38%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}55%{-webkit-transform:scale(1.5);transform:scale(1.5);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}72%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}81%{-webkit-transform:scale(1.24);transform:scale(1.24);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}89%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}95%{-webkit-transform:scale(1.04);transform:scale(1.04);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}100%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}
