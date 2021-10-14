@@ -15,23 +15,28 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { Vibration } from '@ionic-native/vibration/ngx';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
+    BrowserModule,
+    CommonModule,
+    IonicModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
       preventDuplicates: true,
+      progressBar: true
     })
   ],
-  providers: [Vibration , AngularFireAuthGuard, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -36,7 +36,7 @@
     "@ionic-native/vibration": "^5.24.0",
     "@ionic/angular": "^5.5.2",
     "capacitor": "^0.5.5",
-    "cordova-android": "9.1.0",
+    "capacitor-resources": "^2.0.5",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device-motion": "^2.0.1",
     "cordova-plugin-flashlight": "^3.2.0",
@@ -97,6 +97,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-vibration": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }

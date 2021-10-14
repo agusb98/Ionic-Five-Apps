@@ -114,7 +114,7 @@ const Segment = class {
   }
   async componentDidLoad() {
     this.setCheckedClasses();
-    this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-f49d994d.js */ "iWo5"))).createGesture({
+    this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-34cb2743.js */ "KF81"))).createGesture({
       el: this.el,
       gestureName: 'segment',
       gesturePriority: 100,

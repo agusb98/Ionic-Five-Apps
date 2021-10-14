@@ -1,0 +1,20 @@
+<ion-content [fullscreen]="true">
+  <div id="cosasLindas">
+    <label>
+      Cosas lindas
+    </label>
+  </div>
+  <div id="cosasFeas">
+    <label>
+      Cosas feas
+    </label>
+  </div>
+  <img id="imgNuevo" src="assets/images/nuevo.png" alt="casa nueva" (click)="redirectTo('nice')">
+  <img id="imgViejo" src="assets/images/viejo.png" alt="casa vieja" (click)="redirectTo('ugly')">
+</ion-content>
+
+<ion-fab (click)="onLogout()" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="log-out"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

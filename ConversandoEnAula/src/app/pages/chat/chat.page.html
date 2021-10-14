@@ -9,10 +9,10 @@
     <ion-row *ngFor="let message of chat | async">
       <ion-col size="9" *ngIf="message.from != this.email">
         <ion-card class="some-message">
-          {{message.from}}
+          <p>{{message.from}}</p>
           <ion-card-content class="card-content-message">
-            {{message.message}}
-            <p class="info">{{message.date}}, {{message.time}}</p>
+            <p>{{message.message}}</p>
+            <p class="info">{{message.date | date:"short"}}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -20,8 +20,8 @@
       <ion-col offset="3" size="9" *ngIf="message.from == this.email">
         <ion-card class="user-message">
           <ion-card-content class="card-content-message">
-            {{message.message}}
-            <p class="info">{{message.date}}, {{message.time}}</p>
+            <p>{{message.message}}</p>
+            <p class="info">{{message.date | date:"short"}}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>

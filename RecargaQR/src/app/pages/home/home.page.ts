@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { RecargasService } from 'src/app/services/recargas.service';
 import { Recarga } from 'src/app/classes/recarga';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +29,8 @@ export class HomePage implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
+    private vibration: Vibration,
+    private barcodeScanner: BarcodeScanner
   ) { }
 
   ngOnInit() {
@@ -36,13 +38,11 @@ export class HomePage implements OnInit {
   }
 
   getRecargas() {
-    this.authService.afAuth.user.subscribe(user => {
-      if (user && user.email) {
-        this.recargasService.getByUser(user.email).subscribe(credits => {
-          this.email = user.email;
-          this.credits = credits;
-        });
-      }
+    let email = localStorage.getItem('user');
+
+    this.recargasService.getByUser(email).subscribe(credits => {
+      this.email = email;
+      this.credits = credits;
     });
   }
 
@@ -84,12 +84,12 @@ export class HomePage implements OnInit {
   scanCode() {
     let auxCredit;
 
-    BarcodeScanner.scan().then(barcodeData => {
+    this.barcodeScanner.scan().then(barcodeData => {
       this.myCredits.forEach(data => {
         if (data.code == barcodeData.text) {
           auxCredit = data;
           auxCredit.email = this.email;
-          auxCredit.date = new Date;
+          auxCredit.date = new Date().getTime();
         }
       });
 
@@ -98,7 +98,10 @@ export class HomePage implements OnInit {
           if (c.code == auxCredit.code) { auxCredit = null; }
         });
 
-        if (auxCredit) { this.recargasService.create(auxCredit); }
+        if (auxCredit) { 
+          this.recargasService.create(auxCredit); 
+          this.toastr.success('Operación realizada con éxito', 'Recarga QR');
+        }
         else { this.toastr.error('previamente usted ya realizó esta recarga', 'Recarga QR'); }
       }
       else { this.toastr.error('el QR no coincide con ninguno de los almacenados', 'Recarga QR'); }
@@ -107,12 +110,15 @@ export class HomePage implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.toastr.success('Salida con éxito', 'Cerrar Sesión');
+    this.vibration.vibrate([1000, 500, 1000]);
     this.router.navigate(['login']);
   }
 
   retry() {
     this.credits.forEach(data => {
       this.recargasService.delete(data);
+      this.toastr.success('Recargas eliminadas con éxito', 'Eliminar');
     });
   }
 }

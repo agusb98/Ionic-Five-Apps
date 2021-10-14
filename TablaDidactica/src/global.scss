@@ -55,3 +55,12 @@ ion-input {
 ion-card {
     --background: rgb(253, 253, 239);
 }
+
+img-ng-lazyloaded{
+    animation: fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+    from{ opacity: 0; }
+    to{ opacity: 1; }
+}

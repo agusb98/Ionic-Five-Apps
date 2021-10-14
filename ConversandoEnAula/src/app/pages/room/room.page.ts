@@ -12,12 +12,10 @@ export class RoomPage implements OnInit {
 
   ngOnInit() { }
 
-  logout() {
-    this.router.navigate(['user/logout']);
-  }
+  logout() { this.router.navigate(['/user/logout']); }
 
-  classSelected(clase: string){
+  classSelected(clase: string) {
     localStorage.setItem('class', clase);
-    this.router.navigate(['chat']);
+    this.router.navigate(['/chat']);
   }
 }

@@ -1040,22 +1040,24 @@ sub {
   align-items: baseline !important;
 }
 @font-face {
-  font-family: "Bitstream Vera Serif Bold";
+  font-family: "FjallaOne";
   src: url('FjallaOne-Regular.ttf');
 }
 body {
   --ion-background-color: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(90, 134, 186, 1) 100%) !important;
 }
 p,
+ion-title,
 ion-button,
 ion-item,
 ion-input {
-  font-family: "FjallaOne", regular !important;
+  font-family: "FjallaOne" !important;
   color: #4d0046;
   font-weight: bolder;
 }
 ion-content,
-ion-footer {
+ion-footer,
+ion-title {
   text-align: center;
 }
 ion-card,

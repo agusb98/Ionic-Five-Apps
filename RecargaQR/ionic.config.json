@@ -1,7 +1,6 @@
 {
   "name": "RecargaQR",
   "integrations": {
-    "capacitor": {},
     "cordova": {}
   },
   "type": "angular"

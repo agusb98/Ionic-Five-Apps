@@ -62,7 +62,7 @@ const ItemOption = class {
         [mode]: true,
         'item-option-disabled': disabled,
         'item-option-expandable': expandable,
-        'ion-activatable': true,
+        'ion-activatable': true
       }) }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])(TagType, Object.assign({}, attrs, { class: "button-native", part: "native", disabled: disabled }), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", { class: "button-inner" }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", { name: "top" }), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "horizontal-wrapper" }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", { name: "start" }), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", { name: "icon-only" }), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", { name: "end" })), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", { name: "bottom" })), mode === 'md' && Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null))));
   }
   get el() { return Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this); }
@@ -126,6 +126,8 @@ const ItemSliding = class {
     this.optsWidthLeftSide = 0;
     this.sides = 0 /* None */;
     this.optsDirty = true;
+    this.closestContent = null;
+    this.initialContentScrollY = true;
     this.state = 2 /* Disabled */;
     /**
      * If `true`, the user cannot interact with the sliding item.
@@ -139,8 +141,9 @@ const ItemSliding = class {
   }
   async connectedCallback() {
     this.item = this.el.querySelector('ion-item');
+    this.closestContent = this.el.closest('ion-content');
     await this.updateOptions();
-    this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-f49d994d.js */ "iWo5"))).createGesture({
+    this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-34cb2743.js */ "KF81"))).createGesture({
       el: this.el,
       gestureName: 'item-swipe',
       gesturePriority: 100,
@@ -297,11 +300,31 @@ const ItemSliding = class {
     const selected = openSlidingItem;
     if (selected && selected !== this.el) {
       this.closeOpened();
-      return false;
     }
     return !!(this.rightOptions || this.leftOptions);
   }
+  disableContentScrollY() {
+    if (this.closestContent === null) {
+      return;
+    }
+    this.initialContentScrollY = this.closestContent.scrollY;
+    this.closestContent.scrollY = false;
+  }
+  restoreContentScrollY() {
+    if (this.closestContent === null) {
+      return;
+    }
+    this.closestContent.scrollY = this.initialContentScrollY;
+  }
   onStart() {
+    /**
+     * We need to query for the ion-item
+     * every time the gesture starts. Developers
+     * may toggle ion-item elements via *ngIf.
+     */
+    this.item = this.el.querySelector('ion-item');
+    // Prevent scrolling during gesture
+    this.disableContentScrollY();
     openSlidingItem = this.el;
     if (this.tmr !== undefined) {
       clearTimeout(this.tmr);
@@ -346,6 +369,8 @@ const ItemSliding = class {
     this.setOpenAmount(openAmount, false);
   }
   onEnd(gesture) {
+    // Restore ion-content scrollY to initial value when gesture ends
+    this.restoreContentScrollY();
     const velocity = gesture.velocityX;
     let restingPoint = (this.openAmount > 0)
       ? this.optsWidthRightSide
@@ -406,9 +431,22 @@ const ItemSliding = class {
         : 16 /* Start */;
     }
     else {
+      /**
+       * Item sliding cannot be interrupted
+       * while closing the item. If it did,
+       * it would allow the item to get into an
+       * inconsistent state where multiple
+       * items are then open at the same time.
+       */
+      if (this.gesture) {
+        this.gesture.enable(false);
+      }
       this.tmr = setTimeout(() => {
         this.state = 2 /* Disabled */;
         this.tmr = undefined;
+        if (this.gesture) {
+          this.gesture.enable(true);
+        }
       }, 600);
       openSlidingItem = undefined;
       style.transform = '';

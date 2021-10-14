@@ -1,68 +1,39 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { first } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
-import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
-  public user: any;
-
-  constructor(
-    public afAuth: AngularFireAuth,
-    private toastrService: ToastrService,
-    private vibration: Vibration
-  ) { }
+  constructor(public afAuth: AngularFireAuth) { }
 
   async login(email: string, password: string) {
     try {
-      this.user = await this.afAuth.signInWithEmailAndPassword(email, password);
-      this.vibration.vibrate([1000, 500, 1000]);
-      this.toastrService.success('Ingreso con Exito', 'Iniciar Sesión');
-      return this.user;
+      const user = await this.afAuth.signInWithEmailAndPassword(email, password);
+      localStorage.setItem('user', email);
+      return user;
     }
-    catch (error) {
-      this.vibration.vibrate([1000]);
-      this.toastrService.error('Email/Contraseña Incorrecto', 'Iniciar Sesión');
-    }
+    catch (error) { }
     return;
   }
 
   async register(email: string, password: string) {
     try {
-      this.user = await this.afAuth.createUserWithEmailAndPassword(email, password);
-      this.vibration.vibrate([1000, 500, 1000]);
-      this.toastrService.success('Bienvenido!', 'Registro de Usuario');
-
-      return this.user;
+      const user = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      localStorage.setItem('user', email);
+      return user;
     }
-    catch (error) {
-      this.vibration.vibrate([1000]);
-      this.toastrService.error(error.message, 'Registro de Usuario');
-    }
+    catch (error) { }
     return;
   }
 
   async logout() {
     try {
       await this.afAuth.signOut();
-      this.vibration.vibrate([1000, 500, 1000]);
-      this.toastrService.success('Sesión Cerrada con Exito', 'Salir');
-      this.user = null;
-    }
-    catch (error) {
-      this.vibration.vibrate([1000]);
-      this.toastrService.error(error.message, 'Cerrar Sesión');
-    }
-    return;
-  }
-
-  async getCurrentuser() {
-    try {
-      return this.afAuth.authState.pipe(first()).toPromise();
+      localStorage.setItem('user', '');
     }
     catch (error) { }
     return;

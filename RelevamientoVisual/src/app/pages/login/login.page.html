@@ -1,0 +1,29 @@
+<ion-content>
+  <img id="rev" class="bounce-in-bottom" src="assets/images/login.png" alt="casa">
+
+  <ion-card>
+    <form class="centrado">
+      <ion-item>
+        <ion-input type='email' placeholder="Ingrese su correo" [(ngModel)]="user.email" name="email" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type='password' placeholder="Ingrese su contraseña" [(ngModel)]="user.password" name="password"
+          required></ion-input>
+      </ion-item>
+      <div id="buttonContainer">
+        <ion-button id="button" type="submit" (click)="onLogin()" block>Ingresar</ion-button>
+        <ion-button id="button" type="submit" (click)="onRegister()" block>Registrarse</ion-button>
+      </div>
+    </form>
+    <div id="usuarios" class="centrado">
+      <ion-chip *ngFor="let usuario of listaUsuarios" (click)="seleccionarUsuario(usuario)">
+        <p> {{usuario.name}}</p>
+        <ion-icon name="home"></ion-icon>
+      </ion-chip>
+    </div>
+  </ion-card>
+  <img class="bounce-in-top" src="./assets/images/login.png" alt="casa">
+
+
+</ion-content>

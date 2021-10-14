@@ -1,0 +1,30 @@
+ion-content {
+  #logo,
+  #icon {
+    width: 60%;
+    position: absolute;
+    top: 40%;
+    left: 20%;
+  }
+
+  #logo {
+    width: 70%;
+    top: 30%;
+    left: 15%;
+  }
+}
+
+#icon{
+  -webkit-animation:slide-in-elliptic-bottom-fwd 7s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-elliptic-bottom-fwd 7s cubic-bezier(.25,.46,.45,.94) both;
+}
+
+#logo{
+  -webkit-animation:rotate-in-center 6s cubic-bezier(.68,-.55,.265,1.55) infinite alternate-reverse forwards;animation:rotate-in-center 6s cubic-bezier(.68,-.55,.265,1.55) infinite alternate-reverse forwards;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+@-webkit-keyframes slide-in-elliptic-bottom-fwd{0%{-webkit-transform:translateY(600px) rotateX(30deg) scale(0);transform:translateY(600px) rotateX(30deg) scale(0);-webkit-transform-origin:50% 100%;transform-origin:50% 100%;opacity:0}100%{-webkit-transform:translateY(0) rotateX(0) scale(1);transform:translateY(0) rotateX(0) scale(1);-webkit-transform-origin:50% -1400px;transform-origin:50% -1400px;opacity:1}}@keyframes slide-in-elliptic-bottom-fwd{0%{-webkit-transform:translateY(600px) rotateX(30deg) scale(0);transform:translateY(600px) rotateX(30deg) scale(0);-webkit-transform-origin:50% 100%;transform-origin:50% 100%;opacity:0}100%{-webkit-transform:translateY(0) rotateX(0) scale(1);transform:translateY(0) rotateX(0) scale(1);-webkit-transform-origin:50% -1400px;transform-origin:50% -1400px;opacity:1}}
+@-webkit-keyframes rotate-in-center{0%{-webkit-transform:rotate(-360deg);transform:rotate(-360deg);opacity:0}100%{-webkit-transform:rotate(0);transform:rotate(0);opacity:1}}@keyframes rotate-in-center{0%{-webkit-transform:rotate(-360deg);transform:rotate(-360deg);opacity:0}100%{-webkit-transform:rotate(0);transform:rotate(0);opacity:1}}

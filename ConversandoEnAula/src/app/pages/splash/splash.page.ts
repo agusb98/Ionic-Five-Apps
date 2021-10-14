@@ -12,7 +12,7 @@ export class SplashPage {
     public router: Router
   ) {
     setTimeout(() => {
-      this.router.navigateByUrl('user/login');
+      this.router.navigate(['user/login']);
     }, 6000);
   }
 }

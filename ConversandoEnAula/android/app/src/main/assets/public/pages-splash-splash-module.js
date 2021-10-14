@@ -79,7 +79,7 @@ let SplashPage = class SplashPage {
     constructor(router) {
         this.router = router;
         setTimeout(() => {
-            this.router.navigateByUrl('user/login');
+            this.router.navigate(['user/login']);
         }, 6000);
     }
 };

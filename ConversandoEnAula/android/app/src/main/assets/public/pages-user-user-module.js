@@ -22,11 +22,11 @@ const routes = [
     { path: '', redirectTo: 'user/login' },
     {
         path: 'login',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-login-login-module */ "pages-user-login-login-module").then(__webpack_require__.bind(null, /*! ../../pages/user/login/login.module */ "xMJN")).then(m => m.LoginPageModule),
+        loadChildren: () => Promise.all(/*! import() | pages-user-login-login-module */[__webpack_require__.e("default~pages-chat-chat-module~pages-room-room-module~pages-user-login-login-module~pages-user-logou~2b4c0bda"), __webpack_require__.e("common"), __webpack_require__.e("pages-user-login-login-module")]).then(__webpack_require__.bind(null, /*! ../../pages/user/login/login.module */ "xMJN")).then(m => m.LoginPageModule),
     },
     {
         path: 'logout',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-logout-logout-module */ "pages-user-logout-logout-module").then(__webpack_require__.bind(null, /*! ../../pages/user/logout/logout.module */ "v6xZ")).then(m => m.LogoutPageModule), canActivate: [src_app_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
+        loadChildren: () => Promise.all(/*! import() | pages-user-logout-logout-module */[__webpack_require__.e("default~pages-chat-chat-module~pages-room-room-module~pages-user-login-login-module~pages-user-logou~2b4c0bda"), __webpack_require__.e("common"), __webpack_require__.e("pages-user-logout-logout-module")]).then(__webpack_require__.bind(null, /*! ../../pages/user/logout/logout.module */ "v6xZ")).then(m => m.LogoutPageModule), canActivate: [src_app_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
     },
 ];
 let UserRoutingModule = class UserRoutingModule {

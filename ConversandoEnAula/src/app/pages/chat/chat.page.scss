@@ -3,13 +3,6 @@ ion-input {
   max-width: 90%;
 }
 
-ion-card-header {
-  background: transparent;
-
-  font-weight: bold;
-  margin-bottom: 3px;
-}
-
 .mesagge-user {
   font-size: 10px;
   color: whitesmoke;
@@ -20,21 +13,20 @@ ion-card-header {
   background-color: transparent;
 }
 
-.some-message, .user-message{
-    color: rgb(0, 0, 0);
+.some-message{
     background-color: #55df95;
 }
 
 .user-message{ 
-    background-color: #2abdb1;
+  background-color: #2abdb1;
 }
 
 .info {
   position: relative;
   float: right;
-  font-size: 9px;
+  font-size: 0.6rem;
   margin-bottom: 0px;
-  color: whitesmoke;
+  color: #dfdfdf;
 }
 
 #sendButton {
@@ -44,4 +36,13 @@ ion-card-header {
   transform: translate(3px);
   margin-top: 3px;
   margin-right: 5px;
+}
+
+p{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ion-input{
+  text-align: left;
 }

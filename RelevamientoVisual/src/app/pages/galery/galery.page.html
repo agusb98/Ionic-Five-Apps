@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="this.route.snapshot.paramMap.get('kynd') == 'nice'">Cosas Lindas</ion-title>
+    <ion-title *ngIf="this.route.snapshot.paramMap.get('kynd') == 'ugly'">Cosas Feas</ion-title>
+
+    <ion-toggle (ionChange)="onChangePictures($event)" *ngIf="!this.picSelected && this.data == null"
+      vertical="top" horizontal="end"></ion-toggle>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngIf="this.picSelected && this.data == null" class="card card-shadow card-pic">
+    <ion-fab-button id="btn-exit" (click)="this.picSelected = null">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+
+    <img src="{{ this.picSelected.url }}" />
+
+    <ion-card-header>
+      <ion-card-subtitle>{{ this.picSelected.user }}</ion-card-subtitle>
+      <ion-card-title>{{ this.picSelected.date | date:"short" }}</ion-card-title>
+    </ion-card-header>
+
+    <div class="flex">
+      <ion-fab-button (click)="clickLike()">
+        <ion-icon name="heart"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button (click)="clickDislike()">
+        <ion-icon name="heart-dislike"></ion-icon>
+      </ion-fab-button>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="this.data" class="card card-shadow card-pic">
+    <ion-fab-button id="btn-exit" (click)="this.data = null">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+
+    <p-chart *ngIf="this.route.snapshot.paramMap.get('kynd') == 'nice'" type="pie" width="400" height="400"
+      [data]="this.data"></p-chart>
+
+    <p-chart *ngIf="this.route.snapshot.paramMap.get('kynd') == 'ugly'" type="bar" width="400" height="400"
+      [data]="this.data"></p-chart>
+
+  </ion-card>
+
+  <ion-card class="card card-shadow card-pics" *ngFor="let pic of this.pics$ | async"
+    (click)="this.picSelected = pic; this.data = null">
+    <img src="{{ pic.url }}" />
+  </ion-card>
+
+  <ion-fab *ngIf="!this.picSelected && this.data == null" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="takePic()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab *ngIf="!this.picSelected && this.data == null" vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="clickHome()">
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab *ngIf="!this.picSelected && this.data == null" vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="clickStadistics()">
+      <ion-icon name="podium"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

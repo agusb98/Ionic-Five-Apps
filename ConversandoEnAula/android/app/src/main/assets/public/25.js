@@ -33,6 +33,7 @@ const Range = class {
     this.didLoad = false;
     this.noUpdate = false;
     this.hasFocus = false;
+    this.inheritedAttributes = {};
     this.ratioA = 0;
     this.ratioB = 0;
     /**
@@ -41,6 +42,7 @@ const Range = class {
      * This also impacts form bindings such as `ngModel` or `v-model`.
      */
     this.debounce = 0;
+    // TODO: In Ionic Framework v6 this should initialize to this.rangeId like the other form components do.
     /**
      * The name of the control, which is submitted with the form data.
      */
@@ -101,7 +103,7 @@ const Range = class {
     this.setupGesture = async () => {
       const rangeSlider = this.rangeSlider;
       if (rangeSlider) {
-        this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-f49d994d.js */ "iWo5"))).createGesture({
+        this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-34cb2743.js */ "KF81"))).createGesture({
           el: rangeSlider,
           gestureName: 'range',
           gesturePriority: 100,
@@ -168,6 +170,14 @@ const Range = class {
     }
     value = this.ensureValueInBounds(value);
     this.ionChange.emit({ value });
+  }
+  componentWillLoad() {
+    /**
+     * If user has custom ID set then we should
+     * not assign the default incrementing ID.
+     */
+    this.rangeId = (this.el.hasAttribute('id')) ? this.el.getAttribute('id') : `ion-r-${rangeIds++}`;
+    this.inheritedAttributes = Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_2__["i"])(this.el, ['aria-label']);
   }
   componentDidLoad() {
     this.setupGesture();
@@ -312,7 +322,16 @@ const Range = class {
     }
   }
   render() {
-    const { min, max, step, el, handleKeyboard, pressedKnob, disabled, pin, ratioLower, ratioUpper } = this;
+    const { min, max, step, el, handleKeyboard, pressedKnob, disabled, pin, ratioLower, ratioUpper, inheritedAttributes, rangeId } = this;
+    /**
+     * Look for external label, ion-label, or aria-labelledby.
+     * If none, see if user placed an aria-label on the host
+     * and use that instead.
+     */
+    let { labelText } = Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_2__["d"])(el, rangeId);
+    if (labelText === undefined || labelText === null) {
+      labelText = inheritedAttributes['aria-label'];
+    }
     const mode = Object(_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
     const barStart = `${ratioLower * 100}%`;
     const barEnd = `${100 - ratioUpper * 100}%`;
@@ -342,7 +361,7 @@ const Range = class {
       }
     }
     Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_2__["e"])(true, el, this.name, JSON.stringify(this.getValue()), disabled);
-    return (Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onFocusin: this.onFocus, onFocusout: this.onBlur, class: Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color, {
+    return (Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onFocusin: this.onFocus, onFocusout: this.onBlur, id: rangeId, class: Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color, {
         [mode]: true,
         'in-item': Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el),
         'range-disabled': disabled,
@@ -360,7 +379,8 @@ const Range = class {
       disabled,
       handleKeyboard,
       min,
-      max
+      max,
+      labelText
     }), this.dualKnobs && renderKnob(isRTL, {
       knob: 'B',
       pressed: pressedKnob === 'B',
@@ -370,7 +390,8 @@ const Range = class {
       disabled,
       handleKeyboard,
       min,
-      max
+      max,
+      labelText
     })), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", { name: "end" })));
   }
   get el() { return Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this); }
@@ -382,7 +403,7 @@ const Range = class {
     "value": ["valueChanged"]
   }; }
 };
-const renderKnob = (isRTL, { knob, value, ratio, min, max, disabled, pressed, pin, handleKeyboard }) => {
+const renderKnob = (isRTL, { knob, value, ratio, min, max, disabled, pressed, pin, handleKeyboard, labelText }) => {
   const start = isRTL ? 'right' : 'left';
   const knobStyle = () => {
     const style = {};
@@ -408,7 +429,7 @@ const renderKnob = (isRTL, { knob, value, ratio, min, max, disabled, pressed, pi
       'range-knob-pressed': pressed,
       'range-knob-min': value === min,
       'range-knob-max': value === max
-    }, style: knobStyle(), role: "slider", tabindex: disabled ? -1 : 0, "aria-valuemin": min, "aria-valuemax": max, "aria-disabled": disabled ? 'true' : null, "aria-valuenow": value }, pin && Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-pin", role: "presentation", part: "pin" }, Math.round(value)), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-knob", role: "presentation", part: "knob" })));
+    }, style: knobStyle(), role: "slider", tabindex: disabled ? -1 : 0, "aria-label": labelText, "aria-valuemin": min, "aria-valuemax": max, "aria-disabled": disabled ? 'true' : null, "aria-valuenow": value }, pin && Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-pin", role: "presentation", part: "pin" }, Math.round(value)), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-knob", role: "presentation", part: "knob" })));
 };
 const ratioToValue = (ratio, min, max, step) => {
   let value = (max - min) * ratio;
@@ -420,6 +441,7 @@ const ratioToValue = (ratio, min, max, step) => {
 const valueToRatio = (value, min, max) => {
   return Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_2__["j"])(0, (value - min) / (max - min), 1);
 };
+let rangeIds = 0;
 Range.style = {
   ios: rangeIosCss,
   md: rangeMdCss

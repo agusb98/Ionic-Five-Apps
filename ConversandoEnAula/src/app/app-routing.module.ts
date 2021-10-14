@@ -5,7 +5,6 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'splash', pathMatch: 'full' },
   { path: 'splash', loadChildren: () => import('./pages/splash/splash.module').then(m => m.SplashPageModule) },
-  { path: 'user', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
   {
     path: 'room',
     loadChildren: () => import('./pages/room/room.module').then(m => m.RoomPageModule), canActivate: [AuthGuard]
@@ -14,6 +13,7 @@ const routes: Routes = [
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatPageModule), canActivate: [AuthGuard]
   },
+  { path: 'user', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
 ];
 
 @NgModule({

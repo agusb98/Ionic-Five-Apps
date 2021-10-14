@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RoomPageRoutingModule } from './room-routing.module';
 
 import { RoomPage } from './room.page';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { RoomPage } from './room.page';
     IonicModule,
     RoomPageRoutingModule
   ],
-  declarations: [RoomPage]
+  declarations: [RoomPage],
+  providers:[
+    Vibration
+  ]
 })
 export class RoomPageModule {}

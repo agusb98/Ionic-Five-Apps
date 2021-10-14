@@ -84,6 +84,9 @@ const Slides = class {
       }
     }
   }
+  componentWillLoad() {
+    console.warn(`[Deprecation Warning]: ion-slides has been deprecated and will be removed in Ionic Framework v7.0. We recommend using the framework-specific integrations that Swiper.js provides, allowing for faster bug fixes and an improved developer experience. See https://ionicframework.com/docs/api/slides#migration for more information including migration steps.`);
+  }
   connectedCallback() {
     // tslint:disable-next-line: strict-type-predicates
     if (typeof MutationObserver !== 'undefined') {
@@ -271,7 +274,7 @@ const Slides = class {
     const finalOptions = this.normalizeOptions();
     // init swiper core
     // @ts-ignore
-    const { Swiper } = await __webpack_require__.e(/*! import() | swiper-bundle-44a9b1f9-js */ "swiper-bundle-44a9b1f9-js").then(__webpack_require__.bind(null, /*! ./swiper.bundle-44a9b1f9.js */ "F/jJ"));
+    const { Swiper } = await __webpack_require__.e(/*! import() | swiper-bundle-6c5e7804-js */ "swiper-bundle-6c5e7804-js").then(__webpack_require__.bind(null, /*! ./swiper.bundle-6c5e7804.js */ "PduG"));
     await waitForSlides(this.el);
     const swiper = new Swiper(this.el, finalOptions);
     this.swiperReady = true;

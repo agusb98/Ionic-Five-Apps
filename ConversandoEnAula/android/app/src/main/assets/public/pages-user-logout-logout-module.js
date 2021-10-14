@@ -15,7 +15,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _logout_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./logout.page.scss */ "8bdd");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "tyNb");
-/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/auth/auth.service */ "9ans");
+/* harmony import */ var _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/vibration/ngx */ "oo/y");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-toastr */ "5eHb");
+/* harmony import */ var src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/auth/auth.service */ "9ans");
+
+
 
 
 
@@ -23,24 +27,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LogoutPage = class LogoutPage {
-    constructor(authService, router) {
+    constructor(authService, router, vibration, toastr) {
         this.authService = authService;
         this.router = router;
+        this.vibration = vibration;
+        this.toastr = toastr;
     }
     onLogout() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 yield this.authService.logout();
                 localStorage.setItem('email', ''); //Save user data in the local storage
-                this.router.navigate(['user/login']);
+                this.vibration.vibrate([1000, 500, 1000]);
+                this.toastr.success('Sesión Cerrada con Exito', 'Salir');
+                this.router.navigate(['']);
             }
-            catch (error) { }
+            catch (error) {
+                this.vibration.vibrate([1000]);
+                this.toastr.error(error.message, 'Cerrar Sesión');
+            }
         });
     }
 };
 LogoutPage.ctorParameters = () => [
-    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
+    { type: src_app_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] },
+    { type: _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_5__["Vibration"] },
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastrService"] }
 ];
 LogoutPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -134,6 +147,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
 /* harmony import */ var _logout_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./logout-routing.module */ "Ztgu");
 /* harmony import */ var _logout_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./logout.page */ "1Fc6");
+/* harmony import */ var _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/vibration/ngx */ "oo/y");
+
 
 
 
@@ -151,7 +166,8 @@ LogoutPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _logout_routing_module__WEBPACK_IMPORTED_MODULE_5__["LogoutPageRoutingModule"]
         ],
-        declarations: [_logout_page__WEBPACK_IMPORTED_MODULE_6__["LogoutPage"]]
+        declarations: [_logout_page__WEBPACK_IMPORTED_MODULE_6__["LogoutPage"]],
+        providers: [_ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_7__["Vibration"]]
     })
 ], LogoutPageModule);
 

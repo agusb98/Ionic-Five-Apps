@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { Vibration } from '@ionic-native/vibration/ngx';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -28,7 +29,6 @@ export class LoginPage implements OnInit {
     password: [
       { type: "required", message: "Por favor, ingrese su contraseña" },
       { type: "minlength", message: "La contraseña debe tener 6 caractéres o más" }
-
     ]
   }
 
@@ -36,7 +36,8 @@ export class LoginPage implements OnInit {
     private formbuider: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private nav: NavController,
+    private vibration: Vibration,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() { this.validateForm(); }
@@ -72,10 +73,15 @@ export class LoginPage implements OnInit {
       const user = await this.authService.login(this.email, this.password);
       if (user) {
         localStorage.setItem('email', this.email); //Save user data in the local storage
+        this.vibration.vibrate([1000, 500, 1000]);
+        this.toastr.success('Ingreso con Exito', 'Iniciar Sesión');
         this.router.navigate(['room']);
       }
     }
-    catch (error) { }
+    catch (error) {
+      this.vibration.vibrate([1000]);
+      this.toastr.error('Email/Contraseña Incorrecto', 'Iniciar Sesión');
+    }
   }
 
   async onRegister() {
@@ -83,10 +89,15 @@ export class LoginPage implements OnInit {
       const user = await this.authService.register(this.email, this.password);
       if (user) {
         localStorage.setItem('email', this.email); //Save user data in the local storage
-        this.router.navigate(['/room']);
+        this.vibration.vibrate([1000, 500, 1000]);
+        this.toastr.success('Bienvenido!', 'Registro de Usuario');
+        this.router.navigate(['room']);
       }
     }
-    catch (error) { }
+    catch (error) {
+      this.vibration.vibrate([1000]);
+      this.toastr.error(error.message, 'Registro de Usuario');
+    }
   }
 
   /* async onLoginGoogle() {
@@ -109,14 +120,5 @@ export class LoginPage implements OnInit {
       }
     }
     catch (error) { }
-  } */
-
-  /**
-   * Redirect user depending status 
-   * @param isVerified 
-   */
-  /* redirectUser(isVerified: boolean, truePath: string, falsePath: string): void {
-    if (isVerified) { this.router.navigate([truePath]); }
-    else { this.router.navigate([falsePath]); }
   } */
 }

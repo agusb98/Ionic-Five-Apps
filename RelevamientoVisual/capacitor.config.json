@@ -1,0 +1,6 @@
+{
+	"appId": "relevamiento.visual",
+	"appName": "RelevamientoVisual",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

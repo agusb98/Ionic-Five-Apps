@@ -23,7 +23,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers-dd7e4b7b.js */ "1vRN");
 /* harmony import */ var _cubic_bezier_eea9a7a9_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cubic-bezier-eea9a7a9.js */ "bC4P");
 /* harmony import */ var _framework_delegate_4392cd63_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./framework-delegate-4392cd63.js */ "acej");
-/* harmony import */ var _index_c3ff7f2e_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./index-c3ff7f2e.js */ "k4ps");
+/* harmony import */ var _index_931440b1_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./index-931440b1.js */ "Js3/");
 
 
 
@@ -46,7 +46,7 @@ const App = class {
           __webpack_require__.e(/*! import() | tap-click-cc1ae2b2-js */ "tap-click-cc1ae2b2-js").then(__webpack_require__.bind(null, /*! ./tap-click-cc1ae2b2.js */ "cg4z")).then(module => module.startTapClick(_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["c"]));
         }
         if (_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["c"].getBoolean('statusTap', isHybrid)) {
-          __webpack_require__.e(/*! import() | status-tap-bdecfebf-js */ "status-tap-bdecfebf-js").then(__webpack_require__.bind(null, /*! ./status-tap-bdecfebf.js */ "PaPO")).then(module => module.startStatusTap());
+          __webpack_require__.e(/*! import() | status-tap-5c3a5bca-js */ "status-tap-5c3a5bca-js").then(__webpack_require__.bind(null, /*! ./status-tap-5c3a5bca.js */ "dP+9")).then(module => module.startStatusTap());
         }
         if (_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["c"].getBoolean('inputShims', needInputShims())) {
           __webpack_require__.e(/*! import() | input-shims-73f15161-js */ "input-shims-73f15161-js").then(__webpack_require__.bind(null, /*! ./input-shims-73f15161.js */ "3Iwd")).then(module => module.startInputShims(_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["c"]));
@@ -602,6 +602,7 @@ const Header = class {
   constructor(hostRef) {
     Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
     this.collapsibleHeaderInitialized = false;
+    this.inheritedAttributes = {};
     /**
      * If `true`, the header will be translucent.
      * Only applies when the mode is `"ios"` and the device supports
@@ -611,6 +612,9 @@ const Header = class {
      * attribute needs to be set on the content.
      */
     this.translucent = false;
+  }
+  componentWillLoad() {
+    this.inheritedAttributes = Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_3__["i"])(this.el, ['role']);
   }
   async componentDidLoad() {
     await this.checkCollapsibleHeader();
@@ -701,17 +705,17 @@ const Header = class {
     this.collapsibleHeaderInitialized = true;
   }
   render() {
-    const { translucent } = this;
+    const { translucent, inheritedAttributes } = this;
     const mode = Object(_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
     const collapse = this.collapse || 'none';
-    return (Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["H"], { role: "banner", class: {
+    return (Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["H"], Object.assign({ role: "banner", class: {
         [mode]: true,
         // Used internally for styling
         [`header-${mode}`]: true,
         [`header-translucent`]: this.translucent,
         [`header-collapse-${collapse}`]: true,
         [`header-translucent-${mode}`]: this.translucent,
-      } }, mode === 'ios' && translucent &&
+      } }, inheritedAttributes), mode === 'ios' && translucent &&
       Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "header-background" }), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null)));
   }
   get el() { return Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this); }
@@ -729,7 +733,7 @@ const RouterOutlet = class {
     this.ionNavWillLoad = Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionNavWillLoad", 7);
     this.ionNavWillChange = Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionNavWillChange", 3);
     this.ionNavDidChange = Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionNavDidChange", 3);
-    this.animationEnabled = true;
+    this.gestureOrAnimationInProgress = false;
     /**
      * The mode determines which platform styles to use.
      */
@@ -745,11 +749,16 @@ const RouterOutlet = class {
     }
   }
   async connectedCallback() {
-    this.gesture = (await __webpack_require__.e(/*! import() | swipe-back-ee838cf8-js */ "swipe-back-ee838cf8-js").then(__webpack_require__.bind(null, /*! ./swipe-back-ee838cf8.js */ "IYAk"))).createSwipeBackGesture(this.el, () => !!this.swipeHandler && this.swipeHandler.canStart() && this.animationEnabled, () => this.swipeHandler && this.swipeHandler.onStart(), step => this.ani && this.ani.progressStep(step), (shouldComplete, step, dur) => {
+    const onStart = () => {
+      this.gestureOrAnimationInProgress = true;
+      if (this.swipeHandler) {
+        this.swipeHandler.onStart();
+      }
+    };
+    this.gesture = (await __webpack_require__.e(/*! import() | swipe-back-fae97365-js */ "swipe-back-fae97365-js").then(__webpack_require__.bind(null, /*! ./swipe-back-fae97365.js */ "Pu4v"))).createSwipeBackGesture(this.el, () => !this.gestureOrAnimationInProgress && !!this.swipeHandler && this.swipeHandler.canStart(), () => onStart(), step => this.ani && this.ani.progressStep(step), (shouldComplete, step, dur) => {
       if (this.ani) {
-        this.animationEnabled = false;
         this.ani.onFinish(() => {
-          this.animationEnabled = true;
+          this.gestureOrAnimationInProgress = false;
           if (this.swipeHandler) {
             this.swipeHandler.onEnd(shouldComplete);
           }
@@ -772,6 +781,9 @@ const RouterOutlet = class {
           newStepValue += Object(_cubic_bezier_eea9a7a9_js__WEBPACK_IMPORTED_MODULE_4__["g"])([0, 0], [0.32, 0.72], [0, 1], [1, 1], step)[0];
         }
         this.ani.progressEnd(shouldComplete ? 1 : 0, newStepValue, dur);
+      }
+      else {
+        this.gestureOrAnimationInProgress = false;
       }
     });
     this.swipeHandlerChanged();
@@ -840,12 +852,39 @@ const RouterOutlet = class {
     this.ionNavWillChange.emit();
     const { el, mode } = this;
     const animated = this.animated && _ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["c"].getBoolean('animated', true);
-    const animationBuilder = this.animation || opts.animationBuilder || _ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["c"].get('navAnimation');
-    await Object(_index_c3ff7f2e_js__WEBPACK_IMPORTED_MODULE_6__["t"])(Object.assign(Object.assign({ mode,
+    const animationBuilder = opts.animationBuilder || this.animation || _ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["c"].get('navAnimation');
+    await Object(_index_931440b1_js__WEBPACK_IMPORTED_MODULE_6__["t"])(Object.assign(Object.assign({ mode,
       animated,
       enteringEl,
       leavingEl, baseEl: el, progressCallback: (opts.progressAnimation
-        ? ani => this.ani = ani
+        ? ani => {
+          /**
+           * Because this progress callback is called asynchronously
+           * it is possible for the gesture to start and end before
+           * the animation is ever set. In that scenario, we should
+           * immediately call progressEnd so that the transition promise
+           * resolves and the gesture does not get locked up.
+           */
+          if (ani !== undefined && !this.gestureOrAnimationInProgress) {
+            this.gestureOrAnimationInProgress = true;
+            ani.onFinish(() => {
+              this.gestureOrAnimationInProgress = false;
+              if (this.swipeHandler) {
+                this.swipeHandler.onEnd(false);
+              }
+            }, { oneTimeCallback: true });
+            /**
+             * Playing animation to beginning
+             * with a duration of 0 prevents
+             * any flickering when the animation
+             * is later cleaned up.
+             */
+            ani.progressEnd(0, 0, 0);
+          }
+          else {
+            this.ani = ani;
+          }
+        }
         : undefined) }, opts), { animationBuilder }));
     // emit nav changed event
     this.ionNavDidChange.emit();
@@ -870,7 +909,7 @@ const RouterOutlet = class {
 };
 RouterOutlet.style = routeOutletCss;
 
-const titleIosCss = ":host{--color:initial;display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;-ms-flex-align:center;align-items:center;-webkit-transform:translateZ(0);transform:translateZ(0);color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}.toolbar-title{display:block;width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;pointer-events:auto}:host(.title-small) .toolbar-title{white-space:normal}:host{left:0;top:0;padding-left:90px;padding-right:90px;padding-top:0;padding-bottom:0;position:absolute;width:100%;height:100%;-webkit-transform:translateZ(0);transform:translateZ(0);font-size:17px;font-weight:600;text-align:center;-webkit-box-sizing:border-box;box-sizing:border-box;pointer-events:none}:host-context([dir=rtl]){left:unset;right:unset;right:0}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:90px;padding-inline-start:90px;-webkit-padding-end:90px;padding-inline-end:90px}}:host(.title-small){padding-left:9px;padding-right:9px;padding-top:6px;padding-bottom:16px;position:relative;font-size:13px;font-weight:normal}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host(.title-small){padding-left:unset;padding-right:unset;-webkit-padding-start:9px;padding-inline-start:9px;-webkit-padding-end:9px;padding-inline-end:9px}}:host(.title-large){padding-left:16px;padding-right:16px;padding-top:0;padding-bottom:0;-webkit-transform-origin:left center;transform-origin:left center;bottom:0;-ms-flex-align:end;align-items:flex-end;min-width:100%;padding-bottom:6px;font-size:34px;font-weight:700;text-align:start}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host(.title-large){padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}:host-context([dir=rtl]):host(.title-large),:host-context([dir=rtl]).title-large{-webkit-transform-origin:right center;transform-origin:right center}:host(.title-large.ion-cloned-element){--color:var(--ion-text-color, #000)}:host(.title-large) .toolbar-title{-webkit-transform-origin:inherit;transform-origin:inherit}:host-context([dir=rtl]):host(.title-large) .toolbar-title,:host-context([dir=rtl]).title-large .toolbar-title{-webkit-transform-origin:calc(100% - inherit);transform-origin:calc(100% - inherit)}";
+const titleIosCss = ":host{--color:initial;display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;-ms-flex-align:center;align-items:center;-webkit-transform:translateZ(0);transform:translateZ(0);color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}.toolbar-title{display:block;width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;pointer-events:auto}:host(.title-small) .toolbar-title{white-space:normal}:host{left:0;top:0;padding-left:90px;padding-right:90px;padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);position:absolute;width:100%;height:100%;-webkit-transform:translateZ(0);transform:translateZ(0);font-size:17px;font-weight:600;text-align:center;-webkit-box-sizing:border-box;box-sizing:border-box;pointer-events:none}:host-context([dir=rtl]){left:unset;right:unset;right:0}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:90px;padding-inline-start:90px;-webkit-padding-end:90px;padding-inline-end:90px}}:host(.title-small){padding-left:9px;padding-right:9px;padding-top:6px;padding-bottom:16px;position:relative;font-size:13px;font-weight:normal}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host(.title-small){padding-left:unset;padding-right:unset;-webkit-padding-start:9px;padding-inline-start:9px;-webkit-padding-end:9px;padding-inline-end:9px}}:host(.title-large){padding-left:16px;padding-right:16px;padding-top:0;padding-bottom:0;-webkit-transform-origin:left center;transform-origin:left center;bottom:0;-ms-flex-align:end;align-items:flex-end;min-width:100%;padding-bottom:6px;font-size:34px;font-weight:700;text-align:start}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host(.title-large){padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}:host(.title-large.title-rtl){-webkit-transform-origin:right center;transform-origin:right center}:host(.title-large.ion-cloned-element){--color:var(--ion-text-color, #000)}:host(.title-large) .toolbar-title{-webkit-transform-origin:inherit;transform-origin:inherit}:host-context([dir=rtl]):host(.title-large) .toolbar-title,:host-context([dir=rtl]).title-large .toolbar-title{-webkit-transform-origin:calc(100% - inherit);transform-origin:calc(100% - inherit)}";
 
 const titleMdCss = ":host{--color:initial;display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;-ms-flex-align:center;align-items:center;-webkit-transform:translateZ(0);transform:translateZ(0);color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}.toolbar-title{display:block;width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;pointer-events:auto}:host(.title-small) .toolbar-title{white-space:normal}:host{padding-left:20px;padding-right:20px;padding-top:0;padding-bottom:0;font-size:20px;font-weight:500;letter-spacing:0.0125em}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:20px;padding-inline-start:20px;-webkit-padding-end:20px;padding-inline-end:20px}}:host(.title-small){width:100%;height:100%;font-size:15px;font-weight:normal}";
 
@@ -900,6 +939,7 @@ const ToolbarTitle = class {
     return (Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.color, {
         [mode]: true,
         [`title-${size}`]: true,
+        'title-rtl': document.dir === 'rtl'
       }) }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "toolbar-title" }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null))));
   }
   get el() { return Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this); }

@@ -1,7 +1,6 @@
 export class Message {
-    class: string = '';
-    from: any = '';
-    message: string = '';
-    date: string = '';
-    time: string = '';
+    class: string;
+    from: string;
+    message: string;
+    date: number;
 }

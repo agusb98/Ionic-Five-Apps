@@ -2,7 +2,7 @@
 <widget id="io.ionic.AlarmaAntiRobo" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Alarma anti-robo</name>
     <description>Una alarma diseñada para emitir sonidos al momento de ser tomado por un desconocido</description>
-    <author email="jonathan.n.haedo@gmail.com" href="http://github.com/yonykikok">Yonykikok</author>
+    <author email="agusszurdob@gmail.com" href="http://github.com/agusb98">AgusB</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

@@ -62,12 +62,10 @@ let RoomPage = class RoomPage {
         this.router = router;
     }
     ngOnInit() { }
-    logout() {
-        this.router.navigate(['user/logout']);
-    }
+    logout() { this.router.navigate(['/user/logout']); }
     classSelected(clase) {
         localStorage.setItem('class', clase);
-        this.router.navigate(['chat']);
+        this.router.navigate(['/chat']);
     }
 };
 RoomPage.ctorParameters = () => [
@@ -102,6 +100,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
 /* harmony import */ var _room_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./room-routing.module */ "8+wY");
 /* harmony import */ var _room_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./room.page */ "Vvux");
+/* harmony import */ var _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/vibration/ngx */ "oo/y");
+
 
 
 
@@ -119,7 +119,10 @@ RoomPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _room_routing_module__WEBPACK_IMPORTED_MODULE_5__["RoomPageRoutingModule"]
         ],
-        declarations: [_room_page__WEBPACK_IMPORTED_MODULE_6__["RoomPage"]]
+        declarations: [_room_page__WEBPACK_IMPORTED_MODULE_6__["RoomPage"]],
+        providers: [
+            _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_7__["Vibration"]
+        ]
     })
 ], RoomPageModule);
 

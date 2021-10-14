@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { LoginPage } from './login.page';
     IonicModule,
     LoginPageRoutingModule
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage],
+  providers: [Vibration]
 })
-export class LoginPageModule {}
+export class LoginPageModule { }

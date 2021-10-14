@@ -131,7 +131,7 @@ AFTER:
     this.sideChanged();
     // register this menu with the app's menu controller
     _index_0d58a5bf_js__WEBPACK_IMPORTED_MODULE_5__["m"]._register(this);
-    this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-f49d994d.js */ "iWo5"))).createGesture({
+    this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-34cb2743.js */ "KF81"))).createGesture({
       el: document,
       gestureName: 'menu-swipe',
       gesturePriority: 30,
@@ -486,6 +486,7 @@ const menuButtonMdCss = ":host{--background:transparent;--color-focused:currentC
 const MenuButton = class {
   constructor(hostRef) {
     Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+    this.inheritedAttributes = {};
     this.visible = false;
     /**
      * If `true`, the user cannot interact with the menu button.
@@ -503,6 +504,9 @@ const MenuButton = class {
       return _index_0d58a5bf_js__WEBPACK_IMPORTED_MODULE_5__["m"].toggle(this.menu);
     };
   }
+  componentWillLoad() {
+    this.inheritedAttributes = Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_4__["i"])(this.el, ['aria-label']);
+  }
   componentDidLoad() {
     this.visibilityChanged();
   }
@@ -510,13 +514,14 @@ const MenuButton = class {
     this.visible = await updateVisibility(this.menu);
   }
   render() {
-    const { color, disabled } = this;
+    const { color, disabled, inheritedAttributes } = this;
     const mode = Object(_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
     const menuIcon = _ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["c"].get('menuIcon', mode === 'ios' ? 'menu-outline' : 'menu-sharp');
     const hidden = this.autoHide && !this.visible;
     const attrs = {
       type: this.type
     };
+    const ariaLabel = inheritedAttributes['aria-label'] || 'menu';
     return (Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onClick: this.onClick, "aria-disabled": disabled ? 'true' : null, "aria-hidden": hidden ? 'true' : null, class: Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_6__["c"])(color, {
         [mode]: true,
         'button': true,
@@ -526,7 +531,7 @@ const MenuButton = class {
         'in-toolbar-color': Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_6__["h"])('ion-toolbar[color]', this.el),
         'ion-activatable': true,
         'ion-focusable': true
-      }) }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", Object.assign({}, attrs, { disabled: disabled, class: "button-native", part: "native", "aria-label": "menu" }), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", { class: "button-inner" }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", { part: "icon", icon: menuIcon, mode: mode, lazy: false, "aria-hidden": "true" }))), mode === 'md' && Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", { type: "unbounded" }))));
+      }) }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", Object.assign({}, attrs, { disabled: disabled, class: "button-native", part: "native", "aria-label": ariaLabel }), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", { class: "button-inner" }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", { part: "icon", icon: menuIcon, mode: mode, lazy: false, "aria-hidden": "true" }))), mode === 'md' && Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", { type: "unbounded" }))));
   }
   get el() { return Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this); }
 };

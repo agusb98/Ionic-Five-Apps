@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-login',
@@ -36,8 +37,9 @@ export class LoginPage implements OnInit {
     private formbuider: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private nav: NavController,
-  ) { }
+    private toastr: ToastrService,
+    private vibration: Vibration
+    ) { }
 
   ngOnInit() { this.validateForm(); }
 
@@ -71,18 +73,23 @@ export class LoginPage implements OnInit {
     try {
       const user = await this.authService.login(this.email, this.password);
       if (user) {
-        localStorage.setItem('email', this.email); //Save user data in the local storage
+        this.toastr.success('Ingreso con éxito', 'Ingresar Sesión');
+        this.vibration.vibrate([1000, 500, 1000]);
         this.router.navigate(['home']);
       }
     }
-    catch (error) { }
+    catch (error) {
+      this.toastr.error('Correo/Contraseña incorrecto', 'Ingresar Sesión');
+      this.vibration.vibrate([1000]);
+    }
   }
 
   async onRegister() {
     try {
       const user = await this.authService.register(this.email, this.password);
       if (user) {
-        localStorage.setItem('email', this.email); //Save user data in the local storage
+        this.toastr.success('Registrado con éxito', 'Registrarse');
+        this.vibration.vibrate([1000, 500, 1000]);
         this.router.navigate(['/room']);
       }
     }
@@ -99,7 +106,7 @@ export class LoginPage implements OnInit {
     }
     catch (error) { }
   }
-
+ 
   async onLoginFacebook() {
     try {
       const user = await this.authService.loginFacebook();

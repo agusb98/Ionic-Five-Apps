@@ -26,7 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @font-face {
-    font-family: "Bitstream Vera Serif Bold";
+    font-family: "FjallaOne";
     src: url("./assets/fonts/FjallaOne-Regular.ttf");
 }
 
@@ -35,16 +35,18 @@ body {
 }
 
 p,
+ion-title,
 ion-button,
 ion-item,
 ion-input {
-    font-family: "FjallaOne", regular !important;
+    font-family: "FjallaOne" !important;
     color: rgb(77, 0, 70);
     font-weight: bolder;
 }
 
 ion-content,
-ion-footer {
+ion-footer,
+ion-title {
     text-align: center;
 }
 
